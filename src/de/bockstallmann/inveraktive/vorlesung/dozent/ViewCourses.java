@@ -10,6 +10,7 @@ import de.bockstallmann.interaktive.vorlesung.support.LoginJSONHandler;
 import android.os.Bundle;
 import android.os.Messenger;
 import android.app.Activity;
+import android.util.Log;
 import android.view.Menu;
 
 public class ViewCourses extends Activity {
@@ -23,7 +24,8 @@ public class ViewCourses extends Activity {
         setContentView(R.layout.activity_viewcourses);
         String uname = getIntent().getExtras().getString(Constants.LOGIN_UNAME);
         String pw = getIntent().getExtras().getString(Constants.LOGIN_PW);
-        
+        uname = uname.replaceAll(" ","");
+        pw = pw.replaceAll(" ","");
         loginFactory = new LoginFactory(this, R.layout.course_row, new ArrayList<Course>() );
         jsonLoader = new JSONLoader(new Messenger(new LoginJSONHandler(loginFactory, this)));
         jsonLoader.getCoursesAfterLogin(uname, pw);
