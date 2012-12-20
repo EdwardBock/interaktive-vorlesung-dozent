@@ -29,9 +29,10 @@ public class ServerCommunication {
 		HttpResponse response;
 		
 		try {
+			Log.d("ServerConnection",script_pfad);
 			// Serveradresse aufrufen
 			response = httpClient.execute(httpGet);
-			
+
 			// TODO: Response überprüfen: "z.B. 200 ok" oder "404"
 			Log.d("ServerConnection","Response: "+response.getStatusLine().toString());
 
