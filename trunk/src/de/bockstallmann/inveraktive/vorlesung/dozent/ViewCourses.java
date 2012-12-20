@@ -20,7 +20,7 @@ public class ViewCourses extends Activity {
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.);
+        setContentView(R.layout.activity_viewcourses);
         String uname = getIntent().getExtras().getString(Constants.LOGIN_UNAME);
         String pw = getIntent().getExtras().getString(Constants.LOGIN_PW);
         

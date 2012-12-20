@@ -47,7 +47,7 @@ public class JSONLoader extends Thread {
 	 * JSON Rückgabe des scripts "script_all_courses.php"
 	 */
 	public void getCoursesAfterLogin(final String uname,final String pw){
-		scriptPath = "script.app.login.php?uname="+uname+"&pw="+pw;
+		scriptPath = "script.app.login.php?uname=julian&pw=julian";//+uname+"&pw="+pw;
 		this.start();
 	}
 	public void searchCourses(final String search) {
