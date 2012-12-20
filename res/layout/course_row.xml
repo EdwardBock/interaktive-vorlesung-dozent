@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+style="@style/CourseRow"
+>
+     <TextView 
+     android:layout_alignParentTop="true"
+     android:layout_alignParentLeft="true"
+     android:id="@+id/tx_course_row_title"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" 
+     android:singleLine="true"
+     style="@style/CourseRowTitle"
+     />
+     <TextView 
+     android:layout_alignParentBottom="true"
+     android:id="@+id/tx_course_row_description"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" 
+     android:singleLine="true"
+     style="@style/CourseRowInfo"
+     />
+     
+</RelativeLayout>

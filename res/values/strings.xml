@@ -1,8 +1,17 @@
 <resources>
 
-    <string name="app_name">Inveraktive Vorlesung Dozent</string>
+    <!-- Global -->
+    <string name="app_name">Interaktive Vorlesung</string>
     <string name="hello_world">Hello world!</string>
+    <string name="actionbar_icon_cd">@string/app_name</string>
+    <string name="actionbar_add_cd">Hinzufügen</string>
+    <string name="actionbar_back_cd">Zurück</string>
     <string name="menu_settings">Settings</string>
+    <!-- ENDE Global -->
+
+    <string name="user">Benutzername</string>
+    <string name="pw">Passwort</string>
     <string name="title_activity_login">Login</string>
+    <string name="title_activity_view_courses">ViewCourses</string>
 
 </resources>

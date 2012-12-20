@@ -1,5 +1,32 @@
 <resources>
 
-    <style name="AppTheme" parent="android:Theme.Light" />
+    <style name="AppTheme" parent="android:Theme.Light.NoTitleBar" />
+    
+    <style name="Titlebar">
+	    <item name="android:layout_width">match_parent</item>
+	    <item name="android:layout_height">42dp</item>
+	    <item name="android:background">@drawable/titlebar</item>
+	    <item name="android:textColor">#ffffff</item>
+	 </style>
+	 <style name="Titlebar.Logo">
+	     <item name="android:layout_marginLeft">6dp</item>
+	 </style>
+	 <style name="Titlebar.Title">
+	     <item name="android:textColor">#ffffff</item>
+	 </style>
+	 
+	 <style name="CourseRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:padding">4dp</item>
+    </style>
+    
+    <style name="CourseRowTitle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:padding">0dp</item>
+    </style>
+    <style name="CourseRowInfo" parent="@android:style/TextAppearance.Small">
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">@android:color/secondary_text_light</item>
+    </style>
 
 </resources>
