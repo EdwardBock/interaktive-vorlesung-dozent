@@ -1,8 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
     
+    <RelativeLayout 
+    android:id="@+id/actionbar"
+    android:layout_alignParentTop="true"
+    style="@style/Titlebar"
+    >
+        <ImageView 
+        android:id="@+id/actionbar_logo"
+        style="@style/Titlebar.Logo"
+        android:src="@drawable/actionbar_logo"
+        android:contentDescription="@string/actionbar_icon_cd" 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"   
+        />
+        <TextView 
+        android:id="@+id/actionbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"  
+        android:layout_toRightOf="@id/actionbar_logo"
+        android:layout_alignBottom="@id/actionbar_logo"
+        android:text="@string/title_activity_viewcourses"
+        style="@style/Titlebar.Title"
+        />
+    </RelativeLayout>
 
-</LinearLayout>
+    <ListView 
+		android:layout_alignParentBottom="true"
+		android:layout_below="@id/actionbar"
+		android:id="@+id/lv_courses" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content"
+		android:fadeScrollbars="true"
+		/>
+
+</RelativeLayout>

@@ -1,4 +1,4 @@
-package de.bockstallmann.interaktive.vorlesung.model;
+package de.bockstallmann.interaktive.vorlesung.dozent.model;
 
 public class Session {
 

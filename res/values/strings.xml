@@ -13,5 +13,9 @@
     <string name="pw">Passwort</string>
     <string name="title_activity_login">Login</string>
     <string name="title_activity_view_courses">ViewCourses</string>
+    
+    <!-- ViewCourses -->
+    <string name="title_activity_viewcourses">Meine Vorlesungen</string>
+    <!-- ENDE ListCourses -->
 
 </resources>
