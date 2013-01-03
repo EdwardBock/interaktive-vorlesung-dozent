@@ -1,7 +1,9 @@
-package de.bockstallmann.interaktive.vorlesung.model;
+package de.bockstallmann.interaktive.vorlesung.dozent.model;
 
 import java.sql.Date;
 import java.util.ArrayList;
+
+import de.bockstallmann.interaktive.vorlesung.model.Session;
 
 public class Course {
 
