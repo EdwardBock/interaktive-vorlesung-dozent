@@ -4,7 +4,7 @@ public class Session {
 
 	private String room;
 	private String title;
-
+//asdad
 	private String begin;
 	private String end;
 	private String src;
