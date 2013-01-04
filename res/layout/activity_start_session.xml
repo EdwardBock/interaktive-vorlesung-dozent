@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	
+    <RelativeLayout 
+    android:id="@+id/actionbar"
+    android:layout_alignParentTop="true"
+    style="@style/Titlebar"
+    >
+
+        <ImageView
+            android:id="@+id/actionbar_logo"
+            style="@style/Titlebar.Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/actionbar_icon_cd"
+            android:src="@drawable/actionbar_logo" />
+
+        <ImageButton
+            android:id="@+id/actionbar_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:contentDescription="@string/actionbar_back_cd"
+            android:onClick="actionbarClick"
+            android:src="@drawable/actionbar_up" />
+
+        <TextView 
+        android:id="@+id/actionbar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"  
+        android:layout_toRightOf="@id/actionbar_logo"
+        android:layout_alignBottom="@id/actionbar_logo"
+        android:text="@string/title_activity_start_session"
+        style="@style/Titlebar.Title"
+        />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/start_session_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/actionbar" >
+
+    </ListView>
+
+</RelativeLayout>

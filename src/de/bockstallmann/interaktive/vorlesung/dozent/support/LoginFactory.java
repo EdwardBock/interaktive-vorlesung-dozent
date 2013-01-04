@@ -60,7 +60,7 @@ public class LoginFactory extends ArrayAdapter<Course>{
 			try {
 				course.add(new Course(
 						Integer.parseInt(serverDaten.getJSONObject(i).getString("_id")), 
-						serverDaten.getJSONObject(i).getString("titel"), 
+						serverDaten.getJSONObject(i).getString("title"), 
 						serverDaten.getJSONObject(i).getString("user_id"),
 						serverDaten.getJSONObject(i).getString("semester"),
 						serverDaten.getJSONObject(i).getString("pw")));

@@ -25,5 +25,9 @@ public interface Constants {
 	public static final int MSG_ERROR = 0;
 	public static final int MSG_SUCCESS = 1;
 	
+	/**
+	 * Constants für Course
+	 */
+	public static final String COURSE_ID = "_id";
 
 }
