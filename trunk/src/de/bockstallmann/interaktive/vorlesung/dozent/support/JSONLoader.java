@@ -2,8 +2,7 @@ package de.bockstallmann.interaktive.vorlesung.dozent.support;
 
 import org.json.JSONArray;
 
-import de.bockstallmann.interaktive.vorlesung.support.Constants;
-import de.bockstallmann.interaktive.vorlesung.support.ServerCommunication;
+
 
 import android.os.Message;
 import android.os.Messenger;
