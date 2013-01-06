@@ -26,5 +26,14 @@ android:layout_height="wrap_content"
          android:textColor="#AAA"
          android:padding="5dp"
          android:textSize="12sp" />
+
+     <ImageButton
+         android:id="@+id/btn_session_row"
+         android:layout_width="50dp"
+         android:layout_height="50dp"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentTop="true"
+         android:src="@drawable/btn_style_session_start" 
+         android:background="#FFF"/>
      
 </RelativeLayout>
