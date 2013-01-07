@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-	
+
     <RelativeLayout 
     android:id="@+id/actionbar"
     android:layout_alignParentTop="true"
@@ -36,18 +36,39 @@
         android:layout_height="wrap_content"  
         android:layout_toRightOf="@id/actionbar_logo"
         android:layout_alignBottom="@id/actionbar_logo"
-        android:text="@string/title_activity_start_session"
+        android:text="@string/title_activity_active_session"
         style="@style/Titlebar.Title"
         />
 
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/start_session_listview"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tx_active_course"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/actionbar">
+        android:layout_below="@+id/actionbar"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="19dp"
+        android:text="Large Text"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/tx_active_session"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tx_active_course"
+        android:layout_below="@+id/tx_active_course"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ListView
+        android:id="@+id/lv_active"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tx_active_session"
+        android:layout_below="@+id/tx_active_session"
+        android:layout_marginTop="40dp" >
 
     </ListView>
 

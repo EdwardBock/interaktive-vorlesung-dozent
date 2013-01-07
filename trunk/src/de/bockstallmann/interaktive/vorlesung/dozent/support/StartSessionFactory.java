@@ -30,12 +30,11 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 	private LayoutInflater inflater;
 	private ArrayList<Session> sessions;
 	
-	public StartSessionFactory(Context theContext, int textViewResourceId,
-			ArrayList<Session> Sessions) {
-		super(theContext, textViewResourceId, Sessions);
+	public StartSessionFactory(Context theContext, int textViewResourceId, ArrayList<Session> arrayList) {
+		super(theContext, textViewResourceId, arrayList);
 		this.context = theContext;
 		inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);	
-		sessions = Sessions;
+		sessions = arrayList;
 	}
 	
 	
@@ -60,7 +59,8 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 	public void addSessions(JSONArray serverdaten){
 		for(int i = 0;i < serverdaten.length();i++){
 			try {
-				sessions.add(new Session(serverdaten.getJSONObject(i).getInt("_id"),serverdaten.getJSONObject(i).getString("room"),
+				sessions.add(new Session(Integer.parseInt(serverdaten.getJSONObject(i).getString("_id")),
+						serverdaten.getJSONObject(i).getString("room"),
 						serverdaten.getJSONObject(i).getString("info"),
 						serverdaten.getJSONObject(i).getString("date_begin"),
 						serverdaten.getJSONObject(i).getString("date_end")));
