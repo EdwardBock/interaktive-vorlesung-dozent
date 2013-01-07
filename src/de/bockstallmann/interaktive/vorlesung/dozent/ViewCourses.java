@@ -60,6 +60,7 @@ public class ViewCourses extends Activity implements OnItemClickListener {
 		Course course = (Course) parent.getItemAtPosition(position);
 		Intent intent = new Intent(this, StartSession.class);
 		intent.putExtra(Constants.COURSE_ID, course.getID());
+		intent.putExtra(Constants.COURSE_TITLE, course.getTitle());
 		startActivity(intent);
 		
 	}

@@ -28,6 +28,12 @@ public interface Constants {
 	/**
 	 * Constants für Course
 	 */
-	public static final String COURSE_ID = "_id";
+	public static final String COURSE_ID = "course_id";
+	public static final String COURSE_TITLE = "course_title";
 
+	/**
+	 * Constants für Session
+	 */
+	public static final String SESSION_ID = "session_id";
+	public static final String SESSION_TITLE = "session_title";
 }
