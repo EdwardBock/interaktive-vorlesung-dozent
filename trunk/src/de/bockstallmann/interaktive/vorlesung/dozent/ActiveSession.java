@@ -8,6 +8,7 @@ import de.bockstallmann.interaktive.vorlesung.dozent.support.CollectionFactory;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.CollectionsJSONHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.JSONLoader;
+import de.bockstallmann.interaktive.vorlesung.dozent.support.StartStopJSONHandler;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R.layout;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R.menu;
@@ -26,12 +27,13 @@ public class ActiveSession extends Activity {
 	CollectionFactory cf;
 	ListView list;
 	JSONLoader json;
+	int id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_session);
-        int id = getIntent().getExtras().getInt(Constants.SESSION_ID);
+        id = getIntent().getExtras().getInt(Constants.SESSION_ID);
         String course_title = getIntent().getExtras().getString(Constants.COURSE_TITLE);
         String session_title = getIntent().getExtras().getString(Constants.SESSION_TITLE);
         
@@ -50,6 +52,13 @@ public class ActiveSession extends Activity {
     protected void onResume() {
     	super.onResume();
     	list.setAdapter(cf);
+    }
+    
+    @Override
+    protected void onDestroy() {
+    	super.onDestroy();
+    	JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(2, this)));
+		json.getCollectionsBySessionID(id, 0);
     }
 
     @Override
