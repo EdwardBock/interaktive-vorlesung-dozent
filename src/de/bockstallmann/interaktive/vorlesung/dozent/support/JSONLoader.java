@@ -68,4 +68,5 @@ public class JSONLoader extends Thread {
 		scriptPath = "script.app.set_collection_active.php?id="+id+"&active="+active;
 		this.start();
 	}
+
 }
