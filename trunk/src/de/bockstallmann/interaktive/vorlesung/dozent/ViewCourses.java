@@ -3,6 +3,7 @@ package de.bockstallmann.interaktive.vorlesung.dozent;
 import java.util.ArrayList;
 
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Course;
+import de.bockstallmann.interaktive.vorlesung.dozent.model.User;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.JSONLoader;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.LoginFactory;
@@ -36,7 +37,7 @@ public class ViewCourses extends Activity implements OnItemClickListener {
         uname = uname.replaceAll(" ","");
         pw = pw.replaceAll(" ","");
         loginFactory = new LoginFactory(this, R.layout.course_row, new ArrayList<Course>() );
-        jsonLoader = new JSONLoader(new Messenger(new LoginJSONHandler(loginFactory, this)));
+        jsonLoader = new JSONLoader(new Messenger(new LoginJSONHandler(loginFactory, this, new User(uname,pw))));
         jsonLoader.getCoursesAfterLogin(uname, pw);
         list = (ListView)findViewById(R.id.lv_courses);
     }
