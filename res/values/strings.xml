@@ -9,7 +9,7 @@
     <string name="menu_settings">Settings</string>
     <!-- ENDE Global -->
 
-
+	<string name="btn_login">Anmelden</string>
     <!-- Überschriften -->
     <string name="title_activity_start_session">Zu startende Sitzung auswählen!</string>
     <string name="user">Benutzername</string>
