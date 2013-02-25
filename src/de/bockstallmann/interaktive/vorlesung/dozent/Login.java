@@ -1,6 +1,7 @@
 package de.bockstallmann.interaktive.vorlesung.dozent;
 
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
+import de.bockstallmann.interaktive.vorlesung.dozent.support.SQLDataHandler;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 import android.os.Bundle;
 import android.app.Activity;
@@ -16,6 +17,7 @@ import android.support.v4.app.NavUtils;
 public class Login extends Activity {
 
 	private Intent intent;
+	private SQLDataHandler db;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,14 @@ public class Login extends Activity {
         Button btn_login = (Button) findViewById(R.id.btn_login);
         btn_login.setOnClickListener(Login);
         intent = new Intent(this,ViewCourses.class);
+        
+        db = new SQLDataHandler(this);
+        if(db.getUser() != null){
+      		intent.putExtra(Constants.LOGIN_UNAME, db.getUser().getUser());
+            intent.putExtra(Constants.LOGIN_PW, db.getUser().getPw());
+       	 	startActivity(intent);
+      	}
+
     }
     View.OnClickListener Login = new View.OnClickListener() {
         public void onClick(View v) {
@@ -34,6 +44,17 @@ public class Login extends Activity {
         	 startActivity(intent);
         }
       };
+      
+      @Override
+      protected void onResume() {
+      	super.onResume();
+      	if(db.getUser() != null){
+      		intent.putExtra(Constants.LOGIN_UNAME, db.getUser().getUser());
+            intent.putExtra(Constants.LOGIN_PW, db.getUser().getPw());
+       	 	startActivity(intent);
+      	}
+      	
+      }
     
 
     @Override

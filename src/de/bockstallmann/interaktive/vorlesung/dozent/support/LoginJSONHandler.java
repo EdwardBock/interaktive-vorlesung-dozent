@@ -2,6 +2,7 @@ package de.bockstallmann.interaktive.vorlesung.dozent.support;
 
 import org.json.JSONArray;
 
+import de.bockstallmann.interaktive.vorlesung.dozent.model.User;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
 import android.app.Activity;
 import android.os.Handler;
@@ -13,14 +14,21 @@ public class LoginJSONHandler extends Handler {
 	
 	private LoginFactory login;
 	private Activity viewCourse;
+	private SQLDataHandler db;
+	private User user;
 
-	public LoginJSONHandler(LoginFactory Login, Activity ViewCourse){
+	public LoginJSONHandler(LoginFactory Login, Activity ViewCourse, User u){
 		login = Login;
 		viewCourse = ViewCourse;
+		db = new SQLDataHandler(viewCourse);
+		user = u;
 	}
 	public void handleMessage(Message msg) {
 		Log.d("Handler","in FUnktion");
 		if(msg.arg1 == Constants.MSG_SUCCESS){
+			if(db.getUser() == null){
+				db.addUser(user);
+			}
 			login.addCourse((JSONArray) msg.obj);
 		}else if(msg.arg1 == Constants.MSG_ERROR){
 			Toast.makeText(viewCourse, "Falscher LOGIN!!!", Toast.LENGTH_LONG).show();
