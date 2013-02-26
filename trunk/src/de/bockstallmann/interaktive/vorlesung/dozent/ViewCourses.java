@@ -8,6 +8,7 @@ import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.JSONLoader;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.LoginFactory;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.LoginJSONHandler;
+import de.bockstallmann.interaktive.vorlesung.dozent.support.SQLDataHandler;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 
 
@@ -17,6 +18,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -54,6 +56,21 @@ public class ViewCourses extends Activity implements OnItemClickListener {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_view_courses, menu);
         return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	 switch (item.getItemId()) {
+         case R.id.logoutUser:
+             SQLDataHandler db = new SQLDataHandler(this);
+             User u = db.getUser();
+             db.deleteUser(u);
+             finish();
+             return true;
+
+         default:
+             return super.onOptionsItemSelected(item);
+    	 }
     }
 
 	@Override
