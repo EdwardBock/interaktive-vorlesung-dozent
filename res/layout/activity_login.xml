@@ -10,24 +10,27 @@
         android:layout_weight="1"
         android:background="#333333" >
 
+        
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/image_logo" />
+        
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@id/imageView1"
+            android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="37dp"
             android:text="Interaktive Vorlesungen"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF" />
 
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:src="@drawable/ic_launcher" />
+        
         
     </RelativeLayout>
 

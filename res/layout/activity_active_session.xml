@@ -17,7 +17,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:contentDescription="@string/actionbar_icon_cd"
-            android:src="@drawable/actionbar_logo" />
+            android:src="@drawable/ic_menu_iv" />
 
         <ImageButton
             android:id="@+id/actionbar_back"
