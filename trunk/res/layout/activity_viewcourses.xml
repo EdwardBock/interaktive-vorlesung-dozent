@@ -11,7 +11,7 @@
         <ImageView 
         android:id="@+id/actionbar_logo"
         style="@style/Titlebar.Logo"
-        android:src="@drawable/actionbar_logo"
+        android:src="@drawable/ic_menu_iv"
         android:contentDescription="@string/actionbar_icon_cd" 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
