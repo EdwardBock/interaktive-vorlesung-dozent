@@ -2,7 +2,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
 		android:weightSum="2"
-		 android:orientation="vertical">
+		 android:orientation="vertical"
+		 android:fadeScrollbars="true">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -26,18 +27,21 @@
             android:layout_below="@id/imageView1"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
-            android:text="Interaktive Vorlesungen"
+            android:text="@string/title_activity_login"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF" />
 
         
         
     </RelativeLayout>
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" android:layout_height="0dip"
+    android:layout_weight="1" >
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" >
+        
+        >
 
         <EditText
             android:id="@+id/login_user"
@@ -77,5 +81,5 @@
             android:text="@string/btn_login" />
 
     </RelativeLayout>
-
+</ScrollView>
 </LinearLayout>
