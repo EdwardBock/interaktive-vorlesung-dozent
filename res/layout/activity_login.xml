@@ -46,7 +46,8 @@
             android:layout_margin="5dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
-            android:ems="10" >
+            android:ems="10" 
+            style="@drawable/edit_text_holo_light">
 
             <requestFocus />
         </EditText>
@@ -60,6 +61,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="17dp"
             android:ems="10"
+            style="@drawable/edit_text_holo_light"
             android:inputType="textPassword" />
 
         <Button
@@ -71,8 +73,7 @@
             android:layout_below="@+id/login_pw"
             android:layout_marginTop="22dp"
             android:ems="10"
-            android:background="#006600"
-            android:textColor="#FFFFFF"
+            style="@drawable/btn_default_holo_light"
             android:text="@string/btn_login" />
 
     </RelativeLayout>
