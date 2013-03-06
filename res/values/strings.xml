@@ -14,7 +14,7 @@
     <string name="title_activity_start_session">Zu startende Sitzung auswählen!</string>
     <string name="user">Benutzername</string>
     <string name="pw">Passwort</string>
-    <string name="title_activity_login">IV Login</string>
+    <string name="title_activity_login">Interaktive Vorlesung</string>
     <string name="title_activity_view_courses">ViewCourses</string>
     <string name="title_activity_active_session">Vorlesung läuft!</string>
 
