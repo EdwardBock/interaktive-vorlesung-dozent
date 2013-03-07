@@ -8,22 +8,29 @@ import de.bockstallmann.interaktive.vorlesung.model.Session;
 public class Course {
 
 	private int id;
-	private String t,r, d, s, pw;
+	private String t,r, d, s, pw,y;
 	private ArrayList<Session> sess;
 	private Date changed;
 
-	public Course(final int _id, final String title, final String reader, final String semester,  final String password) {
+	public Course(final int _id, final String title, final String reader, final String semester, final String year, final String password) {
 		id = _id;
 		t = title;
 		r = reader;
 		s = semester;
+		y = year;
 		pw = password;
 	}
-	public Course(final int _id, final String title, final String description, final String reader, final String semester,  final String password) {
-		this(_id, title, reader, semester, password);
+	public Course(final int _id, final String title, final String description, final String reader, final String semester, final String year, final String password) {
+		this(_id, title, reader, semester, year, password);
 		d = description;
 	}
 
+	public String getYear() {
+		return y;
+	}
+	public void setYear(String y) {
+		this.y = y;
+	}
 	public int getID(){
 		return id;
 	}

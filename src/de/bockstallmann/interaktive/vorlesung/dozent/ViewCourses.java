@@ -22,13 +22,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 public class ViewCourses extends Activity implements OnItemClickListener {
 
     private LoginFactory loginFactory;
 	private JSONLoader jsonLoader;
 	private ListView list;
+	private ArrayList<Course> courses;
+	
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,10 +42,12 @@ public class ViewCourses extends Activity implements OnItemClickListener {
         String pw = getIntent().getExtras().getString(Constants.LOGIN_PW);
         uname = uname.replaceAll(" ","");
         pw = pw.replaceAll(" ","");
-        loginFactory = new LoginFactory(this, R.layout.course_row, new ArrayList<Course>() );
+        courses = new ArrayList<Course>();
+        loginFactory = new LoginFactory(this, R.layout.course_row, courses, (Spinner)findViewById(R.id.spin_ViewCourses),this);
         jsonLoader = new JSONLoader(new Messenger(new LoginJSONHandler(loginFactory, this, new User(uname,pw))));
         jsonLoader.getCoursesAfterLogin(uname, pw);
         list = (ListView)findViewById(R.id.lv_courses);
+       
     }
 	
 	@Override
@@ -49,13 +55,25 @@ public class ViewCourses extends Activity implements OnItemClickListener {
 		super.onResume();
 		list.setAdapter(loginFactory);
 		list.setOnItemClickListener(this);
-		
 	}
+	
+	
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_view_courses, menu);
         return true;
+    }
+    
+    public void actionBarClick(final View v){
+    	switch(v.getId()){
+    	case R.id.btn_logout:
+    		 SQLDataHandler db = new SQLDataHandler(this);
+             User u = db.getUser();
+             db.deleteUser(u);
+             finish();
+             break;
+    	}
     }
     
     @Override

@@ -50,6 +50,7 @@
             android:layout_margin="5dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+             android:hint="@string/user"
             android:ems="10" 
             style="@drawable/edit_text_holo_light">
 
@@ -64,6 +65,7 @@
             android:layout_below="@+id/login_user"
             android:layout_marginRight="5dp"
             android:layout_marginTop="17dp"
+            android:hint="@string/pw"
             android:ems="10"
             style="@drawable/edit_text_holo_light"
             android:inputType="textPassword" />
