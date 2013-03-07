@@ -1,10 +1,10 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="android:Theme.Light.NoTitleBar" />
     
     <style name="Titlebar">
 	    <item name="android:layout_width">match_parent</item>
-	    <item name="android:layout_height">42dp</item>
+	    <item name="android:layout_height">56dp</item>
 	    <item name="android:background">@drawable/titlebar</item>
 	    <item name="android:textColor">#ffffff</item>
 	 </style>
@@ -13,20 +13,23 @@
 	 </style>
 	 <style name="Titlebar.Title">
 	     <item name="android:textColor">#ffffff</item>
+	     <item name="android:layout_marginLeft">1dp</item>
+	     <item name="android:textSize">18sp</item>
 	 </style>
 	 
 	 <style name="CourseRow">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:padding">4dp</item>
+        <item name="android:layout_height">65dp</item>
+        <item name="android:padding">6dp</item>
     </style>
     
-    <style name="CourseRowTitle" parent="@android:style/TextAppearance.Medium">
-        <item name="android:padding">0dp</item>
+    <style name="CourseRowTitle" parent="@android:style/TextAppearance.Large">
+        <item name="android:padding">3dp</item>
     </style>
-    <style name="CourseRowInfo" parent="@android:style/TextAppearance.Small">
-        <item name="android:padding">0dp</item>
-        <item name="android:textColor">@android:color/secondary_text_light</item>
+    <style name="CourseRowInfo" parent="@android:style/TextAppearance.Medium">
+        <item name="android:padding">3dp</item>
+        <item name="android:textColor">#999</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
 </resources>

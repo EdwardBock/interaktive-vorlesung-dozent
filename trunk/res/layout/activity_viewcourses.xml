@@ -18,15 +18,28 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"   
         />
-        <TextView 
-        android:id="@+id/actionbar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"  
-        android:layout_toRightOf="@id/actionbar_logo"
-        android:layout_alignBottom="@id/actionbar_logo"
-        android:text="@string/title_activity_viewcourses"
-        style="@style/Titlebar.Title"
-        />
+
+        <ImageButton
+            android:id="@+id/btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:onClick="actionBarClick"
+            android:src="@android:drawable/ic_lock_power_off" />
+
+        <Spinner
+            android:id="@+id/spin_ViewCourses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/actionbar_logo"
+            android:layout_alignTop="@+id/actionbar_logo"
+            android:layout_marginLeft="20dp"
+             android:layout_marginRight="35dp"
+            android:layout_toRightOf="@+id/actionbar_logo"
+            style="@drawable/spinner_background_holo_light" />
+        
     </RelativeLayout>
 
     <ListView 
