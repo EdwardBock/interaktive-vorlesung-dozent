@@ -15,6 +15,7 @@ import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 import android.os.Bundle;
 import android.os.Messenger;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -22,9 +23,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class ViewCourses extends Activity implements OnItemClickListener {
 
@@ -32,6 +35,7 @@ public class ViewCourses extends Activity implements OnItemClickListener {
 	private JSONLoader jsonLoader;
 	private ListView list;
 	private ArrayList<Course> courses;
+	private Spinner semester;
 	
 
 	@Override
@@ -42,11 +46,14 @@ public class ViewCourses extends Activity implements OnItemClickListener {
         String pw = getIntent().getExtras().getString(Constants.LOGIN_PW);
         uname = uname.replaceAll(" ","");
         pw = pw.replaceAll(" ","");
+        semester = (Spinner)findViewById(R.id.spin_ViewCourses);
         courses = new ArrayList<Course>();
-        loginFactory = new LoginFactory(this, R.layout.course_row, courses, (Spinner)findViewById(R.id.spin_ViewCourses),this);
+        loginFactory = new LoginFactory(this, R.layout.course_row, courses, semester,this);
         jsonLoader = new JSONLoader(new Messenger(new LoginJSONHandler(loginFactory, this, new User(uname,pw))));
         jsonLoader.getCoursesAfterLogin(uname, pw);
         list = (ListView)findViewById(R.id.lv_courses);
+        
+        
        
     }
 	
@@ -55,6 +62,16 @@ public class ViewCourses extends Activity implements OnItemClickListener {
 		super.onResume();
 		list.setAdapter(loginFactory);
 		list.setOnItemClickListener(this);
+		semester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+                loginFactory.setVisibleCourse(parent.getItemAtPosition(pos).toString());
+                Toast.makeText(getBaseContext(), 
+                		parent.getItemAtPosition(pos).toString(),
+                        Toast.LENGTH_SHORT).show();
+            }
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 	}
 	
 	

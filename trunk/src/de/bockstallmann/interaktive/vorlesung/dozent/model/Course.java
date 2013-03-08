@@ -11,7 +11,9 @@ public class Course {
 	private String t,r, d, s, pw,y;
 	private ArrayList<Session> sess;
 	private Date changed;
+	private boolean visible = true;
 
+	
 	public Course(final int _id, final String title, final String reader, final String semester, final String year, final String password) {
 		id = _id;
 		t = title;
@@ -25,6 +27,14 @@ public class Course {
 		d = description;
 	}
 
+	
+	public boolean isVisible() {
+		return visible;
+	}
+	public void setVisible(boolean visible) {
+		this.visible = visible;
+	}
+	
 	public String getYear() {
 		return y;
 	}
