@@ -52,13 +52,31 @@ public class LoginFactory extends ArrayAdapter<Course>{
         }
 		view = inflater.inflate(R.layout.course_row, parent, false);
 		
-		Course courses = course.get(position);
+		if(course.get(position).isVisible()){
+			Course courses = course.get(position);
+			((TextView)view.findViewById(R.id.tx_course_row_title)).setText(courses.getTitle());
+			((TextView)view.findViewById(R.id.tx_course_row_description)).setText(courses.getSemester()+" "+courses.getYear());
+		}
 		
-		((TextView)view.findViewById(R.id.tx_course_row_title)).setText(courses.getTitle());
-		((TextView)view.findViewById(R.id.tx_course_row_description)).setText(courses.getSemester()+" "+courses.getYear());
+		
 		
 		return view;
 		
+	}
+	
+	public void setVisibleCourse(String selectedsem){
+		String[] sem = selectedsem.split(" ");
+		for(int i = 0; i < course.size();i++){
+			course.get(i).setVisible(false);
+			if(course.get(i).getSemester().equals(sem[0]) && course.get(i).getYear().equals(sem[1])){
+				course.get(i).setVisible(true);
+			}
+			if(selectedsem.equals("Alle Semester")){
+				course.get(i).setVisible(true);
+			}
+		}
+		
+		this.notifyDataSetChanged();
 	}
 	
 	

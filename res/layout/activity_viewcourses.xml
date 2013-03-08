@@ -38,7 +38,8 @@
             android:layout_marginLeft="20dp"
              android:layout_marginRight="35dp"
             android:layout_toRightOf="@+id/actionbar_logo"
-            style="@drawable/spinner_background_holo_light" />
+            style="@drawable/spinner_background_holo_light"
+            android:prompt="@string/spin_semester" />
         
     </RelativeLayout>
 

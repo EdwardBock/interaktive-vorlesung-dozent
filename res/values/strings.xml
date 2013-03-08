@@ -10,6 +10,7 @@
     <!-- ENDE Global -->
 
 	<string name="btn_login">Anmelden</string>
+	<string name="spin_semester">Wählen Sie ein Semester:</string>
     <!-- Überschriften -->
     <string name="title_activity_start_session">Zu startende Sitzung auswählen!</string>
     <string name="user">Benutzername</string>
