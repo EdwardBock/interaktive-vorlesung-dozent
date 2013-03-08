@@ -66,16 +66,24 @@ public class LoginFactory extends ArrayAdapter<Course>{
 	
 	public void setVisibleCourse(String selectedsem){
 		String[] sem = selectedsem.split(" ");
-		for(int i = 0; i < course.size();i++){
-			course.get(i).setVisible(false);
-			if(course.get(i).getSemester().equals(sem[0]) && course.get(i).getYear().equals(sem[1])){
-				course.get(i).setVisible(true);
+		ArrayList<Course> sort = (ArrayList<Course>) course.clone();
+		course.clear();
+		for(int i = 0; i < sort.size();i++){
+			sort.get(i).setVisible(false);
+			if(sort.get(i).getSemester().equals(sem[0]) && sort.get(i).getYear().equals(sem[1])){
+				sort.get(i).setVisible(true);
+				course.add(sort.get(i));
 			}
 			if(selectedsem.equals("Alle Semester")){
-				course.get(i).setVisible(true);
+				sort.get(i).setVisible(true);
+				course.add(sort.get(i));
 			}
 		}
-		
+		for(int i = 0; i < sort.size();i++){
+			if(!sort.get(i).isVisible()){
+				course.add(sort.get(i));
+			}
+		}
 		this.notifyDataSetChanged();
 	}
 	
