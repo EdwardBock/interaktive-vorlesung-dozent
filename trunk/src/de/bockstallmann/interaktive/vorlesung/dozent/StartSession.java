@@ -22,6 +22,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class StartSession extends Activity implements OnItemClickListener {
 
@@ -37,6 +38,8 @@ public class StartSession extends Activity implements OnItemClickListener {
         setContentView(R.layout.activity_start_session);
         int id = getIntent().getExtras().getInt(Constants.COURSE_ID);
         courseTitle = getIntent().getExtras().getString(Constants.COURSE_TITLE);
+        TextView titel = (TextView) findViewById(R.id.actionbar_title);
+        titel.setText(courseTitle);
         sessions = new ArrayList<Session>();
         ssf = new StartSessionFactory(this, R.layout.session_row, sessions);
         listV = (ListView) findViewById(R.id.start_session_listview);
