@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -53,9 +54,15 @@ public class LoginFactory extends ArrayAdapter<Course>{
 		view = inflater.inflate(R.layout.course_row, parent, false);
 		
 		if(course.get(position).isVisible()){
+			ImageView pw = (ImageView) view.findViewById(R.id.lock_courseView);
 			Course courses = course.get(position);
+			if(courses.hasPassword()){
+				pw.setImageResource(R.drawable.ic_lock_lock);
+			}else{
+				pw.setImageResource(R.drawable.ic_lock_open);
+			}
 			((TextView)view.findViewById(R.id.tx_course_row_title)).setText(courses.getTitle());
-			((TextView)view.findViewById(R.id.tx_course_row_description)).setText(courses.getSemester()+" "+courses.getYear());
+			((TextView)view.findViewById(R.id.tx_course_row_description)).setText(courses.getSemester()+"\n"+courses.getYear());
 		}
 		
 		

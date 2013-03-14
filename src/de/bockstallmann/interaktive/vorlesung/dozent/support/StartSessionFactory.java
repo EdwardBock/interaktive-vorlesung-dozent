@@ -48,9 +48,16 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 		view = inflater.inflate(R.layout.session_row, parent, false);
 		
 		Session session = sessions.get(position);
+		String time_begin = session.getBegin().substring(session.getBegin().indexOf(" ")+1);
+		String time_end = session.getEnd().substring(session.getEnd().indexOf(" ")+1);
+		String date = session.getBegin().substring(0, session.getBegin().indexOf(" "));
+		String year = date.substring(0, 4);
+		String month = date.substring(5, 7);
+		String day = date.substring(8, 10);
+		date = day+"."+month+"."+year;
 		
 		((TextView) view.findViewById(R.id.tx_session_row_title)).setText(session.getTitle());
-		((TextView) view.findViewById(R.id.tx_session_row_description)).setText(session.getRoom()+"; "+session.getBegin()+"-"+session.getEnd()+" Uhr");
+		((TextView) view.findViewById(R.id.tx_session_row_description)).setText(session.getRoom()+"; "+time_begin+"-"+time_end+" Uhr  "+date);
 		
 		return view;
 		
