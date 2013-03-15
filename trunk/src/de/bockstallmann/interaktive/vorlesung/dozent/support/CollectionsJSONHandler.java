@@ -12,14 +12,22 @@ import android.widget.Toast;
 public class CollectionsJSONHandler extends Handler {
 
 	private CollectionFactory cf;
+	private StartSessionFactory ssf;
 
 	public CollectionsJSONHandler(CollectionFactory coll){
 		cf = coll;
 	}
+	public CollectionsJSONHandler(StartSessionFactory ssfa){
+		ssf = ssfa;
+	}
 	public void handleMessage(Message msg) {
 		Log.d("Handler","in FUnktion");
 		if(msg.arg1 == Constants.MSG_SUCCESS){
-			cf.addCollections((JSONArray) msg.obj);
+			if(ssf != null){
+				ssf.addCollections((JSONArray) msg.obj);
+			}else if(cf != null){
+				cf.addCollections((JSONArray) msg.obj);
+			}
 		}
 	};
 }
