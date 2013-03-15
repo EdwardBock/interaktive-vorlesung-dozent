@@ -29,6 +29,7 @@ public class LoginFactory extends ArrayAdapter<Course>{
 	private Context context;
 	private LayoutInflater inflater;
 	private ArrayList<Course> course;
+	private ArrayList<Course> allcourses;
 	private Spinner semester;
 	private ArrayList<String> entrys;
 	private Context viewC;
@@ -53,42 +54,29 @@ public class LoginFactory extends ArrayAdapter<Course>{
         }
 		view = inflater.inflate(R.layout.course_row, parent, false);
 		
-		if(course.get(position).isVisible()){
-			ImageView pw = (ImageView) view.findViewById(R.id.lock_courseView);
-			Course courses = course.get(position);
-			if(courses.hasPassword()){
-				pw.setImageResource(R.drawable.ic_lock_lock);
-			}else{
-				pw.setImageResource(R.drawable.ic_lock_open);
-			}
-			((TextView)view.findViewById(R.id.tx_course_row_title)).setText(courses.getTitle());
-			((TextView)view.findViewById(R.id.tx_course_row_description)).setText(courses.getSemester()+"\n"+courses.getYear());
+		ImageView pw = (ImageView) view.findViewById(R.id.lock_courseView);
+		Course courses = course.get(position);
+		if(courses.hasPassword()){
+			pw.setImageResource(R.drawable.ic_lock_lock);
+		}else{
+			pw.setImageResource(R.drawable.ic_lock_open);
 		}
-		
-		
-		
+		((TextView)view.findViewById(R.id.tx_course_row_title)).setText(courses.getTitle());
+		((TextView)view.findViewById(R.id.tx_course_row_description)).setText(courses.getSemester()+"\n"+courses.getYear());
+				
 		return view;
 		
 	}
 	
 	public void setVisibleCourse(String selectedsem){
 		String[] sem = selectedsem.split(" ");
-		ArrayList<Course> sort = (ArrayList<Course>) course.clone();
 		course.clear();
-		for(int i = 0; i < sort.size();i++){
-			sort.get(i).setVisible(false);
-			if(sort.get(i).getSemester().equals(sem[0]) && sort.get(i).getYear().equals(sem[1])){
-				sort.get(i).setVisible(true);
-				course.add(sort.get(i));
+		for(int i = 0; i < allcourses.size();i++){
+			if(allcourses.get(i).getSemester().equals(sem[0]) && allcourses.get(i).getYear().equals(sem[1])){
+				course.add(allcourses.get(i));
 			}
 			if(selectedsem.equals("Alle Semester")){
-				sort.get(i).setVisible(true);
-				course.add(sort.get(i));
-			}
-		}
-		for(int i = 0; i < sort.size();i++){
-			if(!sort.get(i).isVisible()){
-				course.add(sort.get(i));
+				course.add(allcourses.get(i));
 			}
 		}
 		this.notifyDataSetChanged();
@@ -110,7 +98,7 @@ public class LoginFactory extends ArrayAdapter<Course>{
 				continue;
 			}
 		}
-		
+		allcourses = (ArrayList<Course>) course.clone();
 		this.notifyDataSetChanged();
 		entrys.clear();
 		entrys.add("Alle Semester");
@@ -127,7 +115,6 @@ public class LoginFactory extends ArrayAdapter<Course>{
 			}
 			for(int y=0; y < entrys.size(); y++){	
 					if(temp.equals(entrys.get(y))){
-						Log.d("FIlling", "jojo");
 						exist = true;
 					}
 			}
