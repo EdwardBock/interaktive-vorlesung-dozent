@@ -8,10 +8,12 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import de.bockstallmann.interaktive.vorlesung.dozent.model.Collection;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Session;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 
 import android.content.Context;
+import android.os.Messenger;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,7 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 	private Context context;
 	private LayoutInflater inflater;
 	private ArrayList<Session> sessions;
+	private ArrayList<Collection> collections;
 	
 	public StartSessionFactory(Context theContext, int textViewResourceId, ArrayList<Session> arrayList) {
 		super(theContext, textViewResourceId, arrayList);
@@ -55,7 +58,10 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 		String month = date.substring(5, 7);
 		String day = date.substring(8, 10);
 		date = day+"."+month+"."+year;
+		JSONLoader json = new JSONLoader(new Messenger(new CollectionsJSONHandler(this)));
+        json.getCollectionsBySessionID(2, 1);
 		
+
 		((TextView) view.findViewById(R.id.tx_session_row_title)).setText(session.getTitle());
 		((TextView) view.findViewById(R.id.tx_session_row_description)).setText(session.getRoom()+"; "+time_begin+"-"+time_end+" Uhr  "+date);
 		
@@ -74,6 +80,20 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				Log.d("CoursesDetailsFactory", "problem bei i = "+i);
+				continue;
+			}
+		}
+		this.notifyDataSetChanged();
+	}
+	
+	public void addCollections(JSONArray serverDaten){
+		for (int i = 0; i < serverDaten.length(); i++) {
+			try {
+				collections.add(new Collection(
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("_id")), 
+						serverDaten.getJSONObject(i).getString("title")));
+			} catch (Exception e) {
+				Log.d("CollectionAdapter", "problem bei i = "+i);
 				continue;
 			}
 		}
