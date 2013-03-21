@@ -24,6 +24,7 @@ public class CollectionsJSONHandler extends Handler {
 		Log.d("Handler","in FUnktion");
 		if(msg.arg1 == Constants.MSG_SUCCESS){
 			if(ssf != null){
+				Log.d("CollectJSON Handler", msg.obj.toString());
 				ssf.addCollections((JSONArray) msg.obj);
 			}else if(cf != null){
 				cf.addCollections((JSONArray) msg.obj);
