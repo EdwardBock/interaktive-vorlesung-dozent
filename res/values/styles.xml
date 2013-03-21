@@ -43,7 +43,9 @@
     </style>
     <style name="SessionRowCollectionCount" >
         <item name="android:textColor">#999</item>
+        <item name="android:paddingTop">1dp</item>
         <item name="android:paddingRight">3dp</item>
+        <item name="android:gravity">center</item>
         <item name="android:textSize">15sp</item>
     </style>
     <style name="SessionRowInfo" parent="@android:style/TextAppearance.Small">

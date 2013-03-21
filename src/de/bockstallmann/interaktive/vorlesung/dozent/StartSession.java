@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Course;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Session;
+import de.bockstallmann.interaktive.vorlesung.dozent.support.CollectionsJSONHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.JSONLoader;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.SessionsJSONHandler;
@@ -14,6 +15,7 @@ import de.bockstallmann.inveraktive.vorlesung.dozent.R.menu;
 import android.os.Bundle;
 import android.os.Messenger;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -31,20 +33,28 @@ public class StartSession extends Activity implements OnItemClickListener {
 	ListView listV;
 	JSONLoader json;
 	String courseTitle;
+	ProgressDialog pd;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        pd = new ProgressDialog(this);
+        pd.setMessage("Loading event!");
+        pd.setCancelable(true);
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER); 
+        pd.show();
         setContentView(R.layout.activity_start_session);
         int id = getIntent().getExtras().getInt(Constants.COURSE_ID);
         courseTitle = getIntent().getExtras().getString(Constants.COURSE_TITLE);
         TextView titel = (TextView) findViewById(R.id.actionbar_title);
         titel.setText(courseTitle);
         sessions = new ArrayList<Session>();
-        ssf = new StartSessionFactory(this, R.layout.session_row, sessions);
+        ssf = new StartSessionFactory(this, R.layout.session_row, sessions,pd,id);
         listV = (ListView) findViewById(R.id.start_session_listview);
         json = new JSONLoader(new Messenger(new SessionsJSONHandler(ssf)));
         json.startGetSessionsByCourse(id);
+        
        
     }
     

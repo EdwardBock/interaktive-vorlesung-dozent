@@ -12,6 +12,7 @@ import de.bockstallmann.interaktive.vorlesung.dozent.model.Collection;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Session;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Messenger;
 import android.util.Log;
@@ -32,12 +33,16 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 	private LayoutInflater inflater;
 	private ArrayList<Session> sessions;
 	private ArrayList<Collection> collections;
+	ProgressDialog pd;
 	
-	public StartSessionFactory(Context theContext, int textViewResourceId, ArrayList<Session> arrayList) {
+	public StartSessionFactory(Context theContext, int textViewResourceId, ArrayList<Session> arrayList, ProgressDialog prdi, int courseId) {
 		super(theContext, textViewResourceId, arrayList);
 		this.context = theContext;
 		inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);	
 		sessions = arrayList;
+		pd = prdi;
+		id = courseId;
+		collections = new ArrayList<Collection>();
 	}
 	
 	
@@ -58,10 +63,15 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 		String month = date.substring(5, 7);
 		String day = date.substring(8, 10);
 		date = day+"."+month+"."+year;
-		JSONLoader json = new JSONLoader(new Messenger(new CollectionsJSONHandler(this)));
-        json.getCollectionsBySessionID(2, 1);
 		
-
+		int fragerunden = 0;
+		for(int i=0;i<collections.size();i++){
+			if(collections.get(i).getSession_id() == session.getID()){
+				fragerunden++;
+			}
+		}
+		
+		((TextView) view.findViewById(R.id.tx_session_row_collectioncount)).setText(fragerunden+"\nFragerunden");
 		((TextView) view.findViewById(R.id.tx_session_row_title)).setText(session.getTitle());
 		((TextView) view.findViewById(R.id.tx_session_row_description)).setText(session.getRoom()+"; "+time_begin+"-"+time_end+" Uhr  "+date);
 		
@@ -83,14 +93,17 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 				continue;
 			}
 		}
-		this.notifyDataSetChanged();
+		JSONLoader json = new JSONLoader(new Messenger(new CollectionsJSONHandler(this)));
+        json.getAllCollectionsFromCourse(id);
+		
 	}
 	
 	public void addCollections(JSONArray serverDaten){
 		for (int i = 0; i < serverDaten.length(); i++) {
 			try {
 				collections.add(new Collection(
-						Integer.parseInt(serverDaten.getJSONObject(i).getString("_id")), 
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("_id")),
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("session_id")),
 						serverDaten.getJSONObject(i).getString("title")));
 			} catch (Exception e) {
 				Log.d("CollectionAdapter", "problem bei i = "+i);
@@ -98,6 +111,7 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 			}
 		}
 		this.notifyDataSetChanged();
+		pd.dismiss();
 	}
 	
 

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Messenger;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Collection;
@@ -21,6 +23,7 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 	private ArrayList<Collection> collections;
 	private Context context;
 	private LayoutInflater inflater;
+	private int collectionID = 0;
 	
 	
 	public CollectionFactory(Context theContext, int textViewResourceId,ArrayList<Collection> Collection) {
@@ -34,48 +37,74 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View view = convertView;
-		if (view == null) {
-            LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = vi.inflate(R.layout.collection_row, null);
-        }
-		view = inflater.inflate(R.layout.collection_row, parent, false);
 		Collection collection = collections.get(position);
-		
-		TextView tv = (TextView) view.findViewById(R.id.tx_collection);
-		tv.setText(collection.getTitle());
-		
-		ImageButton start = (ImageButton) view.findViewById(R.id.btn_collection_start);
-		start.setTag(position);
-		start.setOnClickListener(new OnClickListener() {
+		final int id = collection.getId();
+		if(collection.getId() == collectionID){
+			if (view == null) {
+	            LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	            view = vi.inflate(R.layout.collection_row_open, null);
+	        }
+			view = inflater.inflate(R.layout.collection_row_open, parent, false);
+
+			TextView tv = (TextView) view.findViewById(R.id.tx_collection_name_open);
+			tv.setText(collection.getTitle());
 			
-			@Override
-			public void onClick(View v) {
-				Collection coll = collections.get(Integer.parseInt(v.getTag().toString()));
-				Log.d("Position:--", ""+coll.getId());
-				JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(1, context)));
-				json.setCollectionActive(coll.getId(),1);
-			}
-		});
-		
-		ImageButton stop = (ImageButton) view.findViewById(R.id.btn_collection_stop);
-		stop.setTag(position);
-		stop.setOnClickListener(new OnClickListener() {
+			Button close = (Button) view.findViewById(R.id.btn_collection_close);
+			close.setOnClickListener(new OnClickListener() {				
+				@Override
+				public void onClick(View v) {
+					dialogStarter(id);					
+				}
+			});
 			
-			@Override
-			public void onClick(View v) {
-				Collection coll = collections.get(Integer.parseInt(v.getTag().toString()));
-				Log.d("Position:--Stop", v.getTag().toString());
-				JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(0, context)));
-				json.setCollectionActive(coll.getId(),0);
-			}
-		});
+			
+		}else{
+			if (view == null) {
+	            LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	            view = vi.inflate(R.layout.collection_row_close, null);
+	        }
+			view = inflater.inflate(R.layout.collection_row_close, parent, false);
+			
+			
+			TextView tv = (TextView) view.findViewById(R.id.tx_collection_name_close);
+			tv.setText(collection.getTitle());
+		}
+		
+		
 		
 		
 		return view;
 	}
 	
-	
+	private void dialogStarter(final int id){
+		final Dialog dialog = new Dialog(context);
+		dialog.setContentView(R.layout.dialog_exit_col);
+		
+		Button abort = (Button) dialog.findViewById(R.id.btn_dialog_ok);
+		// if button is clicked, close the custom dialog
+		abort.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(0,context)));
+		        json.setCollectionActive(id, 2);
+		        layoutVisibleChange(0);
+		        dialog.dismiss();
+			}
+		});
+		
+		Button ok = (Button) dialog.findViewById(R.id.btn_dialog_abort);
+		// if button is clicked, close the custom dialog
+		ok.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.dismiss();
+			}
+		});
 
+		dialog.show();
+	}
+	
+	
 	public void addCollections(JSONArray serverDaten){
 		for (int i = 0; i < serverDaten.length(); i++) {
 			try {
@@ -87,6 +116,11 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 				continue;
 			}
 		}
+		this.notifyDataSetChanged();
+	}
+	
+	public void layoutVisibleChange(int collectionid){
+		this.collectionID = collectionid;
 		this.notifyDataSetChanged();
 	}
 }

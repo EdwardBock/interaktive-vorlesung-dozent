@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/actionbar"
-        android:layout_marginLeft="21dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="19dp"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -64,8 +64,9 @@
 
     <ListView
         android:id="@+id/lv_active"
-        android:layout_width="300dp"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
         android:layout_alignLeft="@+id/tx_active_session"
         android:layout_below="@+id/tx_active_session"
         android:layout_marginTop="40dp" >
