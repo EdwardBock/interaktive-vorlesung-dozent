@@ -23,6 +23,7 @@
     <string name="title_activity_viewcourses">Meine Vorlesungen</string>
     <!-- ENDE ListCourses -->
 
-    
-
+    <!-- Active Session -->
+    <string name="btn_refresh">Aktualisieren</string>
+	<string name="btn_close_collection">Runde schließen</string>
 </resources>

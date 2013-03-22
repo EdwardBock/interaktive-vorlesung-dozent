@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Messenger;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -77,31 +79,25 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 	}
 	
 	private void dialogStarter(final int id){
-		final Dialog dialog = new Dialog(context);
-		dialog.setContentView(R.layout.dialog_exit_col);
-		
-		Button abort = (Button) dialog.findViewById(R.id.btn_dialog_ok);
-		// if button is clicked, close the custom dialog
-		abort.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(0,context)));
+
+		AlertDialog.Builder builder;
+		//AlertDialog alertDialog;
+		builder = new AlertDialog.Builder(context);
+		builder.setMessage("Wollen Sie wirklich die Fragerunde schlieﬂen?")
+        .setPositiveButton("Schlieﬂen", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            	JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(0,context)));
 		        json.setCollectionActive(id, 2);
 		        layoutVisibleChange(0);
-		        dialog.dismiss();
-			}
-		});
-		
-		Button ok = (Button) dialog.findViewById(R.id.btn_dialog_abort);
-		// if button is clicked, close the custom dialog
-		ok.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				dialog.dismiss();
-			}
-		});
-
-		dialog.show();
+            }
+        })
+        .setNegativeButton("Abbrechen", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+		builder.create();
+		builder.show();
 	}
 	
 	

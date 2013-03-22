@@ -1,75 +1,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <RelativeLayout 
-    android:id="@+id/actionbar"
-    android:layout_alignParentTop="true"
-    style="@style/Titlebar"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#222222"
     >
 
-        <ImageView
-            android:id="@+id/actionbar_logo"
-            style="@style/Titlebar.Logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/actionbar_icon_cd"
-            android:src="@drawable/ic_menu_iv" />
-
-        <ImageButton
-            android:id="@+id/actionbar_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_alignParentLeft="true"
-            android:background="@null"
-            android:contentDescription="@string/actionbar_back_cd"
-            android:onClick="actionbarClick"
-            android:src="@drawable/actionbar_up" />
-
-        <TextView 
-        android:id="@+id/actionbar_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"  
-        android:layout_toRightOf="@id/actionbar_logo"
-        android:layout_alignBottom="@id/actionbar_logo"
-        android:text="@string/title_activity_active_session"
-        style="@style/Titlebar.Title"
-        />
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/tx_active_course"
+   <RelativeLayout
+       android:id="@+id/titel_collection"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" 
+        android:background="@drawable/fix_titel">
+        
+     <TextView
+        android:id="@+id/tx_active_session_titel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/actionbar"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="19dp"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_marginTop="3dp"
+        style="@style/SessionRowTitle" />
 
     <TextView
         android:id="@+id/tx_active_session"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tx_active_course"
-        android:layout_below="@+id/tx_active_course"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_alignLeft="@+id/tx_active_session_titel"
+        android:layout_below="@+id/tx_active_session_titel"
+        style="@style/SessionRowInfo" />
 
+    <ImageButton
+        android:id="@+id/btn_close_active_session"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_close_fix_activity"
+        android:background="@null" />
+        
+    </RelativeLayout>
+     
     <ListView
         android:id="@+id/lv_active"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:layout_alignLeft="@+id/tx_active_session"
-        android:layout_below="@+id/tx_active_session"
-        android:layout_marginTop="40dp" >
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        android:padding="3dp"
+        android:layout_below="@id/titel_collection"
+        android:scrollbars="vertical"
+        android:background="#FFF" >
 
     </ListView>
 

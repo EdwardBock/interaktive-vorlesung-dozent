@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:text="TextView"
         android:textAppearance="?android:attr/textAppearanceMedium" />
         
         <Button
@@ -20,7 +19,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tx_collection_name_open"
         android:layout_marginTop="3dp"
-        android:text="Fragerunde schließen" />
+        android:text="@string/btn_close_collection" />
         
         <Button
         android:id="@+id/btn_collection_refresh"
@@ -29,6 +28,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tx_collection_name_open"
         android:layout_marginTop="3dp"
-        android:text="Abgegebene Fragen Aktualisieren" />
+        android:text="@string/btn_refresh" />
     
 </RelativeLayout>
