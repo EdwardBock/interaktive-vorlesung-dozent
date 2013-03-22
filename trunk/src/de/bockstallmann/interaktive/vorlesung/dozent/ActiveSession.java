@@ -41,7 +41,7 @@ public class ActiveSession extends Activity implements OnItemClickListener{
         String course_title = getIntent().getExtras().getString(Constants.COURSE_TITLE);
         String session_title = getIntent().getExtras().getString(Constants.SESSION_TITLE);
         
-        TextView tx_course = (TextView) findViewById(R.id.tx_active_course);
+        TextView tx_course = (TextView) findViewById(R.id.tx_active_session_titel);
         TextView tx_session = (TextView) findViewById(R.id.tx_active_session);
         tx_course.setText(course_title);
         tx_session.setText(session_title);
