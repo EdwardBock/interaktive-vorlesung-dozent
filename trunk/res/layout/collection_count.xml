@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingLeft="3dp"
+    android:paddingRight="3dp" >
+
+    <TextView
+        android:id="@+id/tx_collection_question_number"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:background="#999"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:text="1"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tx_collection_question_number_count"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tx_collection_question_number"
+        android:layout_below="@+id/tx_collection_question_number"
+        android:gravity="center"
+        android:text="2"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>
