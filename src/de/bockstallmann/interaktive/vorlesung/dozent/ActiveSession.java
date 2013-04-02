@@ -47,7 +47,7 @@ public class ActiveSession extends Activity implements OnItemClickListener{
         tx_session.setText(session_title);
         list = (ListView) findViewById(R.id.lv_active);
         collection = new ArrayList<Collection>();
-        cf = new CollectionFactory(this, R.layout.collection_row_close, collection);
+        cf = new CollectionFactory(this, R.layout.collection_row_close, collection, id);
         json = new JSONLoader(new Messenger(new CollectionsJSONHandler(cf)));
         json.getCollectionsBySessionID(id);
         JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(3, this)));
@@ -86,12 +86,7 @@ public class ActiveSession extends Activity implements OnItemClickListener{
    	 * Clickmethode für die Actionbaricons
    	 * @param view
    	 */
-   	public void actionbarClick(final View view){
-   		switch (view.getId()) {
-   			case R.id.actionbar_back:
-   			case R.id.actionbar_logo:
+   	public void exit(final View view){
    				finish();
-   				break;
-   		}
    	}
 }

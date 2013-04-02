@@ -9,7 +9,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:text="TextView"
         android:textAppearance="?android:attr/textAppearanceMedium" />
         
         <TextView
@@ -19,7 +18,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginTop="2dp"
         android:layout_below="@+id/tx_collection_name_close"
-        android:text="7 Fragen/° 5 Antworten"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textSize="13sp"
+        android:textColor="#999" />
     
 </RelativeLayout>

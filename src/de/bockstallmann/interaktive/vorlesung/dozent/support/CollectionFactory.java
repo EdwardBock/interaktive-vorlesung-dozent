@@ -6,6 +6,7 @@ import org.json.JSONArray;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Messenger;
@@ -29,16 +30,17 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 	private Context context;
 	private LayoutInflater inflater;
 	private int collectionID = 0;
-	private View collectionView;
+	private int sessionID;
 	private LinearLayout ll;
 	
 	
-	public CollectionFactory(Context theContext, int textViewResourceId,ArrayList<Collection> Collection) {
+	public CollectionFactory(Context theContext, int textViewResourceId,ArrayList<Collection> Collection, int Session_id) {
 		super(theContext, textViewResourceId, Collection);
 		this.collections = Collection;
 		this.context = theContext;
 		inflater = (LayoutInflater)theContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);	
 		questions = new ArrayList<Question>();
+		sessionID = Session_id;
 	}
 	
 	
@@ -47,7 +49,8 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 		View view = convertView;
 		Collection collection = collections.get(position);
 		final int id = collection.getId();
-		if(collection.getId() == collectionID){
+		if(collection.getId() == collectionID){		
+			refreshCollectionCount(id);	
 			if (view == null) {
 	            LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	            view = vi.inflate(R.layout.collection_row_open, null);
@@ -56,6 +59,16 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 
 			TextView tv = (TextView) view.findViewById(R.id.tx_collection_name_open);
 			tv.setText(collection.getTitle());
+			TextView tx_count = (TextView) view.findViewById(R.id.tx_collection_qcount_open);
+			int count = 0;
+			int answers = 0;
+			for(int i = 0; i<questions.size();i++){
+				if(questions.get(i).getCollectionID() == collection.getId()){
+					count++;
+					answers += questions.get(i).questionIntCount();
+				}					
+			}
+			tx_count.setText(count+" Fragen/ Ø"+answers/count+" Antworten");
 			
 			ll = (LinearLayout) view.findViewById(R.id.ll_collection_count);
 			
@@ -71,7 +84,7 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 			refresh.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
-					refreshCollectionCount(id);					
+					layoutVisibleChange(collectionID);			
 				}
 			});
 			
@@ -86,17 +99,23 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 			
 			TextView tv = (TextView) view.findViewById(R.id.tx_collection_name_close);
 			tv.setText(collection.getTitle());
+				TextView tx_count = (TextView) view.findViewById(R.id.tx_collection_qcount_close);
+				int count = 0;
+				int answers = 0;
+				for(int i = 0; i<questions.size();i++){
+					if(questions.get(i).getCollectionID() == collection.getId()){
+						count++;
+						answers += questions.get(i).questionIntCount();
+					}					
+				}
+				tx_count.setText(count+" Fragen/ Ø"+answers/count+" Antworten");
 		}
-		
-		
-		
-		
 		return view;
 	}
 	
 	private void refreshCollectionCount(int id){
-		JSONLoader json = new JSONLoader(new Messenger(new QuestionJSONHandler(this)));
-        json.getAllCollectionsQuestions(id);
+		JSONLoader json = new JSONLoader(new Messenger(new QuestionJSONHandler(this,true)));
+        json.getAllSessionsQuestions(sessionID);
 	}
 	
 	private void dialogStarter(final int id){
@@ -133,11 +152,13 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 				continue;
 			}
 		}
-		this.notifyDataSetChanged();
+		JSONLoader json = new JSONLoader(new Messenger(new QuestionJSONHandler(this,false)));
+        json.getAllSessionsQuestions(sessionID);
+        
 	}
 	
 	public void addQuestions(JSONArray serverDaten){
-		
+		questions.clear();
 		for (int i = 0; i < serverDaten.length(); i++) {
 			try {
 				questions.add(new Question(
@@ -146,21 +167,44 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_a")),
 						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_b")),
 						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_c")),
-						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_d"))));
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_d")),
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("collection_id"))));
 			} catch (Exception e) {
 				Log.d("CollectionAdapter Question", "problem bei i = "+i);
 				continue;
 			}
 		}
-        for(int i = 0; i< questions.size();i++){
-        	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);         
-        	View view = inflater.inflate(R.layout.collection_count,null);
-        	TextView q = (TextView) view.findViewById(R.id.tx_collection_question_number);
-        	q.setText(questions.get(i).getPosition());
-        	TextView c = (TextView) view.findViewById(R.id.tx_collection_question_number_count);
-        	c.setText(questions.get(i).questionCount());
-        	ll.addView(view);
-        }
+		this.notifyDataSetChanged();
+	}
+	public void refreshQuestions(JSONArray serverDaten){
+		questions.clear();
+		for (int i = 0; i < serverDaten.length(); i++) {
+			try {
+				questions.add(new Question(
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("_id")), 
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("position")),
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_a")),
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_b")),
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_c")),
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("count_d")),
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("collection_id"))));
+			} catch (Exception e) {
+				Log.d("CollectionAdapter Question", "problem bei i = "+i);
+				continue;
+			}
+		}
+			ll.removeAllViews();
+	        for(int i = 0; i< questions.size();i++){
+	        	if(questions.get(i).getCollectionID() == collectionID){
+		        	LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);         
+		        	View view = inflater.inflate(R.layout.collection_count,null);
+		        	TextView q = (TextView) view.findViewById(R.id.tx_collection_question_number);
+		        	q.setText(questions.get(i).getPosition());
+		        	TextView c = (TextView) view.findViewById(R.id.tx_collection_question_number_count);
+		        	c.setText(questions.get(i).questionCount());
+		        	ll.addView(view);
+	        	}
+	        }		
 	}
 	
 	public void layoutVisibleChange(int collectionid){
