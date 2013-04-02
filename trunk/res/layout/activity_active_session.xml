@@ -37,7 +37,8 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
         android:src="@drawable/ic_close_fix_activity"
-        android:background="@null" />
+        android:background="@null"
+        android:onClick="exit" />
         
     </RelativeLayout>
      
