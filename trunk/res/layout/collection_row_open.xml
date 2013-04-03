@@ -12,6 +12,15 @@
         android:layout_alignParentLeft="true"
         android:textAppearance="?android:attr/textAppearanceMedium" />
         
+         <ImageView
+            android:id="@+id/img_open"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/img_collection_open" />
+        
         <LinearLayout
             android:id="@+id/ll_collection_count"
             android:layout_width="wrap_content"
@@ -51,6 +60,6 @@
         android:layout_marginTop="3dp"
         android:text="@string/btn_refresh" />
 
-        
+       
     
 </RelativeLayout>

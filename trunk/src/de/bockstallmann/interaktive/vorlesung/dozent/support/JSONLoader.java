@@ -87,4 +87,8 @@ public class JSONLoader extends Thread {
 		scriptPath = "script.app.all_sessions_questions.php?id="+id;
 		this.start();
 	}
+	public void setCrashCollection(final int id){
+		scriptPath = "script.app.set_crash_collection_inactive.php?id="+id;
+		this.start();
+	}
 }

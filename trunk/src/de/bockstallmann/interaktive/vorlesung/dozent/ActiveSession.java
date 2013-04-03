@@ -53,10 +53,12 @@ public class ActiveSession extends Activity implements OnItemClickListener{
         JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(3, this)));
         json.setSessionActive(id, 1);
     }
-    
+   
     @Override
     protected void onResume() {
     	super.onResume();
+    	JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(3, this)));
+        json.setSessionActive(id, 1);
     	list.setAdapter(cf);
     	list.setOnItemClickListener(this);
     }
@@ -76,10 +78,12 @@ public class ActiveSession extends Activity implements OnItemClickListener{
     
     @Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Collection col = (Collection)parent.getItemAtPosition(position);
-		cf.layoutVisibleChange(col.getId());
-		JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(1,this)));
-        json.setCollectionActive(col.getId(), 1);
+    	Collection col = (Collection)parent.getItemAtPosition(position);
+    	if(cf.getCollectionID() == 0 && col.getState() != 2){			
+			cf.layoutVisibleChange(col.getId());
+			JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(1,this)));
+	        json.setCollectionActive(col.getId(), 1);
+    	}
 	}
     
     /**
