@@ -2,17 +2,25 @@ package de.bockstallmann.interaktive.vorlesung.dozent.model;
 
 public class Collection {
 	
-	int id, session_id;
+	int id, session_id, active;
 	String title;
 	
-	public Collection(int i, String t){
+	public Collection(int i, String t, int a){
 		id = i;
 		title = t;
+		active = a;
 	}
 	public Collection(int i, int session, String t){
 		id = i;
 		session_id = session;
 		title = t;
+	}
+	
+	public int getState(){
+		return active;
+	}
+	public void setState(int state){
+		active = state;
 	}
 
 	public int getId() {

@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Collection;
@@ -41,6 +42,8 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 		inflater = (LayoutInflater)theContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);	
 		questions = new ArrayList<Question>();
 		sessionID = Session_id;
+		JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(4, context)));
+        json.setCrashCollection(sessionID);
 	}
 	
 	
@@ -49,6 +52,7 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 		View view = convertView;
 		Collection collection = collections.get(position);
 		final int id = collection.getId();
+		//Geöffnete Fragerunde
 		if(collection.getId() == collectionID){		
 			refreshCollectionCount(id);	
 			if (view == null) {
@@ -88,27 +92,32 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 				}
 			});
 			
-			
+		//Geschlossene Fragerunde	
 		}else{
 			if (view == null) {
 	            LayoutInflater vi = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	            view = vi.inflate(R.layout.collection_row_close, null);
 	        }
 			view = inflater.inflate(R.layout.collection_row_close, parent, false);
-			
-			
+						
 			TextView tv = (TextView) view.findViewById(R.id.tx_collection_name_close);
 			tv.setText(collection.getTitle());
-				TextView tx_count = (TextView) view.findViewById(R.id.tx_collection_qcount_close);
-				int count = 0;
-				int answers = 0;
-				for(int i = 0; i<questions.size();i++){
-					if(questions.get(i).getCollectionID() == collection.getId()){
-						count++;
-						answers += questions.get(i).questionIntCount();
-					}					
-				}
-				tx_count.setText(count+" Fragen/ Ø"+answers/count+" Antworten");
+			TextView tx_count = (TextView) view.findViewById(R.id.tx_collection_qcount_close);
+			int count = 0;
+			int answers = 0;
+			for(int i = 0; i<questions.size();i++){
+				if(questions.get(i).getCollectionID() == collection.getId()){
+					count++;
+					answers += questions.get(i).questionIntCount();
+				}					
+			}
+			tx_count.setText(count+" Fragen/ Ø"+answers/count+" Antworten");
+			if(collection.getState() == 2){
+				ImageView iv =(ImageView) view.findViewById(R.id.img_close_state);
+				iv.setBackgroundResource(R.drawable.img_collection_close);
+			}else{
+				(view.findViewById(R.id.img_close_state)).setBackgroundResource(R.drawable.img_collection_before);
+			}
 		}
 		return view;
 	}
@@ -118,7 +127,11 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
         json.getAllSessionsQuestions(sessionID);
 	}
 	
-	private void dialogStarter(final int id){
+	public int getCollectionID(){
+		return collectionID;
+	}
+	
+	private void dialogStarter(final int coll_id){
 
 		AlertDialog.Builder builder;
 		//AlertDialog alertDialog;
@@ -127,7 +140,12 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
         .setPositiveButton("Schließen", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(0,context)));
-		        json.setCollectionActive(id, 2);
+		        json.setCollectionActive(coll_id, 2);
+		        for(int i = 0; i < collections.size();i++){
+		        	if(collections.get(i).getId() == coll_id){
+		        		collections.get(i).setState(2);
+		        	}
+		        }
 		        layoutVisibleChange(0);
             }
         })
@@ -145,8 +163,9 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 		for (int i = 0; i < serverDaten.length(); i++) {
 			try {
 				collections.add(new Collection(
-						Integer.parseInt(serverDaten.getJSONObject(i).getString("_id")), 
-						serverDaten.getJSONObject(i).getString("title")));
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("_id")),
+						serverDaten.getJSONObject(i).getString("title"),
+						Integer.parseInt(serverDaten.getJSONObject(i).getString("active"))));
 			} catch (Exception e) {
 				Log.d("CollectionAdapter", "problem bei i = "+i);
 				continue;

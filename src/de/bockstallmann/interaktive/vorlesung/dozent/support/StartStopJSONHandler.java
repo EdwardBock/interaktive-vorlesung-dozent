@@ -21,6 +21,7 @@ public class StartStopJSONHandler extends Handler{
 		Log.d("HandlerStartStop","in FUnktion");
 		if(msg.arg1 == Constants.MSG_SUCCESS){
 			switch(status){
+			case 4: break;//CrashSicherung am Anfang
 			case 3: Toast.makeText(context, "Vorlesung gestartet!",Toast.LENGTH_SHORT ).show();break;
 			case 2: Toast.makeText(context, "Vorlesung beendet!",Toast.LENGTH_SHORT ).show();break;//Zur verwendung des Handlers als Sessionbeendenhandler
 			case 1: Toast.makeText(context, "Fragerunde gestartet!",Toast.LENGTH_SHORT ).show();break;
