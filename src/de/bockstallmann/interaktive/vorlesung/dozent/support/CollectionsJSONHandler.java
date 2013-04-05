@@ -29,6 +29,10 @@ public class CollectionsJSONHandler extends Handler {
 			}else if(cf != null){
 				cf.addCollections((JSONArray) msg.obj);
 			}
+		}else{
+			if(ssf != null){
+				ssf.pdDismiss();
+			}
 		}
 	};
 }

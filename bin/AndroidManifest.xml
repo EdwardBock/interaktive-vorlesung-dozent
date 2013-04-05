@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="de.bockstallmann.interaktive.vorlesung.dozent.Login"
+            android:name="de.bockstallmann.interaktive.vorlesung.dozent.ViewCourses"
             android:label="@string/title_activity_login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="de.bockstallmann.interaktive.vorlesung.dozent.ViewCourses"/>
+        <activity android:name="de.bockstallmann.interaktive.vorlesung.dozent.Login"/>
         <activity android:name="de.bockstallmann.interaktive.vorlesung.dozent.StartSession"/>
         <activity android:name="de.bockstallmann.interaktive.vorlesung.dozent.ActiveSession"/>
     </application>

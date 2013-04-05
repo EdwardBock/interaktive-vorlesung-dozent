@@ -15,9 +15,11 @@ public class SessionsJSONHandler extends Handler {
 		ssf = startSession;
 	}
 	public void handleMessage(Message msg) {
-		Log.d("Handler","in FUnktion");
+		Log.d("HandlerSessions",msg.arg1+"");
 		if(msg.arg1 == Constants.MSG_SUCCESS){
 			ssf.addSessions((JSONArray) msg.obj);
+		}else{
+			ssf.pdDismiss();
 		}
 	};
 }
