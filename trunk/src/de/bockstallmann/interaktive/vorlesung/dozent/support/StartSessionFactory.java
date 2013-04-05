@@ -114,6 +114,10 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 		pd.dismiss();
 	}
 	
+	public void pdDismiss(){
+		pd.dismiss();
+	}
+	
 
 
 }

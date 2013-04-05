@@ -36,14 +36,38 @@ public class ViewCourses extends Activity implements OnItemClickListener {
 	private ListView list;
 	private ArrayList<Course> courses;
 	private Spinner semester;
-	
+	private SQLDataHandler db;
+	private Intent intent;
+	private String uname = "";
+	private String pw = "";
 
+	private void loginCheck(){
+		if(db.getUser() == null){	
+			if(uname == null){
+				uname = "";
+		        pw = "";  
+	        	startActivity(intent);
+	       	 	finish();
+	        }
+	    }else{
+        	uname = db.getUser().getUser();
+          	pw = db.getUser().getPw();
+        }
+	}
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewcourses);
-        String uname = getIntent().getExtras().getString(Constants.LOGIN_UNAME);
-        String pw = getIntent().getExtras().getString(Constants.LOGIN_PW);
+        //if(getIntent().getStringExtra(Constants.LOGIN_UNAME) != ""){
+        	uname = getIntent().getStringExtra(Constants.LOGIN_UNAME);
+            pw = getIntent().getStringExtra(Constants.LOGIN_PW);
+            Log.d("Username check",""+uname);
+        //}       
+        db = new SQLDataHandler(this);
+        intent = new Intent(this, Login.class);
+        loginCheck();
+               
         uname = uname.replaceAll(" ","");
         pw = pw.replaceAll(" ","");
         semester = (Spinner)findViewById(R.id.spin_ViewCourses);
@@ -52,14 +76,14 @@ public class ViewCourses extends Activity implements OnItemClickListener {
         jsonLoader = new JSONLoader(new Messenger(new LoginJSONHandler(loginFactory, this, new User(uname,pw))));
         jsonLoader.getCoursesAfterLogin(uname, pw);
         list = (ListView)findViewById(R.id.lv_courses);
-        
-        
-       
+        uname = "";
+        pw = "";       
     }
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
+		loginCheck();
 		list.setAdapter(loginFactory);
 		list.setOnItemClickListener(this);
 		semester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -88,25 +112,13 @@ public class ViewCourses extends Activity implements OnItemClickListener {
     		 SQLDataHandler db = new SQLDataHandler(this);
              User u = db.getUser();
              db.deleteUser(u);
-             finish();
+             startActivity(intent);
+	       	 finish();
              break;
     	}
     }
     
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-    	 switch (item.getItemId()) {
-         case R.id.logoutUser:
-             SQLDataHandler db = new SQLDataHandler(this);
-             User u = db.getUser();
-             db.deleteUser(u);
-             finish();
-             return true;
-
-         default:
-             return super.onOptionsItemSelected(item);
-    	 }
-    }
+    
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

@@ -17,7 +17,7 @@ import android.support.v4.app.NavUtils;
 public class Login extends Activity {
 
 	private Intent intent;
-	private SQLDataHandler db;
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,12 +27,7 @@ public class Login extends Activity {
         btn_login.setOnClickListener(Login);
         intent = new Intent(this,ViewCourses.class);
         
-        db = new SQLDataHandler(this);
-        if(db.getUser() != null){
-      		intent.putExtra(Constants.LOGIN_UNAME, db.getUser().getUser());
-            intent.putExtra(Constants.LOGIN_PW, db.getUser().getPw());
-       	 	startActivity(intent);
-      	}
+        
 
     }
     View.OnClickListener Login = new View.OnClickListener() {
@@ -42,18 +37,13 @@ public class Login extends Activity {
              intent.putExtra(Constants.LOGIN_UNAME, uname.getText().toString());
              intent.putExtra(Constants.LOGIN_PW, pw.getText().toString());
         	 startActivity(intent);
+        	 //finish();
         }
       };
       
       @Override
       protected void onResume() {
-      	super.onResume();
-      	if(db.getUser() != null){
-      		intent.putExtra(Constants.LOGIN_UNAME, db.getUser().getUser());
-            intent.putExtra(Constants.LOGIN_PW, db.getUser().getPw());
-       	 	startActivity(intent);
-      	}
-      	
+      	super.onResume();  	
       }
     
 
