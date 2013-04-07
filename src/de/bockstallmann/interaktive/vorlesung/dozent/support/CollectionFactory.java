@@ -113,10 +113,9 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 			}
 			tx_count.setText(count+" Fragen/ Ø"+answers/count+" Antworten");
 			if(collection.getState() == 2){
-				ImageView iv =(ImageView) view.findViewById(R.id.img_close_state);
-				iv.setBackgroundResource(R.drawable.img_collection_close);
+				((TextView) view.findViewById(R.id.tx_collection_close_state)).setText(R.string.close);
 			}else{
-				(view.findViewById(R.id.img_close_state)).setBackgroundResource(R.drawable.img_collection_before);
+				((TextView) view.findViewById(R.id.tx_collection_close_state)).setText(R.string.before);
 			}
 		}
 		return view;
