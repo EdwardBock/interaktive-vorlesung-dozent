@@ -49,6 +49,7 @@ public class StartSession extends Activity implements OnItemClickListener {
         courseTitle = getIntent().getExtras().getString(Constants.COURSE_TITLE);
         TextView titel = (TextView) findViewById(R.id.actionbar_title);
         titel.setText(courseTitle);
+        
         sessions = new ArrayList<Session>();
         ssf = new StartSessionFactory(this, R.layout.session_row, sessions,pd,id);
         listV = (ListView) findViewById(R.id.start_session_listview);

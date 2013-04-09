@@ -10,27 +10,28 @@
     style="@style/Titlebar"
     >
 
-        <ImageView
-            android:id="@+id/actionbar_logo"
-            style="@style/Titlebar.Logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:contentDescription="@string/actionbar_icon_cd"
-            android:src="@drawable/ic_menu_iv" />
-
+        <ImageButton 
+		    android:id="@+id/actionbar_logo"
+		    android:src="@drawable/ic_menu_iv"
+		    style="@style/Titlebar.Logo"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		    android:contentDescription="@string/actionbar_icon_cd"
+		    android:layout_alignParentLeft="true"
+		/>
         <ImageButton
             android:id="@+id/actionbar_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:background="@null"
             android:contentDescription="@string/actionbar_back_cd"
+            android:src="@drawable/actionbar_up" 
             android:onClick="actionbarClick"
-            android:src="@drawable/actionbar_up" />
-
+            />
+        
         <TextView 
         android:id="@+id/actionbar_title"
         android:layout_width="wrap_content"
@@ -49,9 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/actionbar"
-        android:layout_margin="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
         android:background="@drawable/listview_rounded_corner">
-
     </ListView>
 
 </RelativeLayout>

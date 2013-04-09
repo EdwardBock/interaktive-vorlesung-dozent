@@ -19,7 +19,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="3dp"
-        style="@style/SessionRowTitle" />
+        style="@style/SessionTitle" />
 
     <TextView
         android:id="@+id/tx_active_session"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tx_active_session_titel"
         android:layout_below="@+id/tx_active_session_titel"
-        style="@style/SessionRowInfo" />
+        style="@style/SessionInfo" />
 
     <ImageButton
         android:id="@+id/btn_close_active_session"

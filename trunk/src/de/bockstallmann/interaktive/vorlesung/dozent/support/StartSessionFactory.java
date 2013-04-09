@@ -71,9 +71,9 @@ public class StartSessionFactory extends ArrayAdapter<Session>{
 			}
 		}
 		
-		((TextView) view.findViewById(R.id.tx_session_row_collectioncount)).setText(fragerunden+"\nFragerunden");
+		((TextView) view.findViewById(R.id.tx_session_row_collectioncount)).setText(fragerunden+" Fragerunden");
 		((TextView) view.findViewById(R.id.tx_session_row_title)).setText(session.getTitle());
-		((TextView) view.findViewById(R.id.tx_session_row_description)).setText(session.getRoom()+"; "+time_begin+"-"+time_end+" Uhr  "+date);
+		((TextView) view.findViewById(R.id.tx_session_row_description)).setText(time_begin+"-"+time_end+" Uhr"+"\n"+session.getRoom()+"|"+date);
 		
 		return view;
 		

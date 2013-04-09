@@ -9,7 +9,7 @@
 	    <item name="android:textColor">#ffffff</item>
 	 </style>
 	 <style name="Titlebar.Logo">
-	     <item name="android:layout_marginLeft">6dp</item>
+	     <item name="android:layout_marginLeft">14dp</item>
 	 </style>
 	 <style name="Titlebar.Title">
 	     <item name="android:textColor">#ffffff</item>
@@ -39,6 +39,18 @@
         <item name="android:paddingRight">3dp</item>
     </style>
     
+    
+    <style name="SessionTitle" parent="@android:style/TextAppearance.Medium">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="SessionInfo" parent="@android:style/TextAppearance.Small">               
+        <item name="android:textColor">#AAA</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingLeft">3dp</item>
+    </style>
+    
     <style name="SessionRow">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">55dp</item>
@@ -48,16 +60,15 @@
     <style name="SessionRowTitle" parent="@android:style/TextAppearance.Medium">
         <item name="android:paddingLeft">3dp</item>
     </style>
-    <style name="SessionRowCollectionCount" >
-        <item name="android:textColor">#999</item>
-        <item name="android:paddingTop">1dp</item>
-        <item name="android:paddingRight">3dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">15sp</item>
-    </style>
-    <style name="SessionRowInfo" parent="@android:style/TextAppearance.Small">
+    <style name="SessionRowCollectionCount" parent="@android:style/TextAppearance.Small">
         <item name="android:textColor">#999</item>
         <item name="android:paddingLeft">3dp</item>
+    </style>
+    <style name="SessionRowInfo" parent="@android:style/TextAppearance.Small">               
+        <item name="android:textColor">#999</item>
+        <item name="android:paddingTop">7dp</item>
+        <item name="android:paddingRight">3dp</item>
+        <item name="android:gravity">right</item>
     </style>
     
     <style name="Dialog" parent="@android:style/Theme.Dialog" >
