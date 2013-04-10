@@ -41,49 +41,50 @@ public class ViewCourses extends Activity implements OnItemClickListener {
 	private String uname = "";
 	private String pw = "";
 
-	private void loginCheck(){
-		if(db.getUser() == null){	
-			if(uname == null){
-				uname = "";
-		        pw = "";  
-	        	startActivity(intent);
-	       	 	finish();
-	        }
-	    }else{
+	private boolean loginCheck(){
+		if(db.getUser() == null && uname == ""){	
+		        return false;	        	
+	    }else if(db.getUser() == null && uname != ""){
+	    	return true;
+		}else if(db.getUser() != null){
         	uname = db.getUser().getUser();
           	pw = db.getUser().getPw();
+          	return true;
         }
+		return false;
 	}
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_viewcourses);
-        //if(getIntent().getStringExtra(Constants.LOGIN_UNAME) != ""){
+        if(getIntent().hasExtra(Constants.LOGIN_UNAME)){
         	uname = getIntent().getStringExtra(Constants.LOGIN_UNAME);
             pw = getIntent().getStringExtra(Constants.LOGIN_PW);
-            Log.d("Username check",""+uname);
-        //}       
+        }       
         db = new SQLDataHandler(this);
         intent = new Intent(this, Login.class);
-        loginCheck();
-               
-        uname = uname.replaceAll(" ","");
-        pw = pw.replaceAll(" ","");
         semester = (Spinner)findViewById(R.id.spin_ViewCourses);
         courses = new ArrayList<Course>();
         loginFactory = new LoginFactory(this, R.layout.course_row, courses, semester,this);
-        jsonLoader = new JSONLoader(new Messenger(new LoginJSONHandler(loginFactory, this, new User(uname,pw))));
-        jsonLoader.getCoursesAfterLogin(uname, pw);
         list = (ListView)findViewById(R.id.lv_courses);
-        uname = "";
-        pw = "";       
+        if(loginCheck()){
+        	uname = uname.replaceAll(" ","");
+            pw = pw.replaceAll(" ","");            
+            jsonLoader = new JSONLoader(new Messenger(new LoginJSONHandler(loginFactory, this, new User(uname,pw))));
+            jsonLoader.getCoursesAfterLogin(uname, pw);       
+        }
+               
+              
     }
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		loginCheck();
+		if(!loginCheck()){
+        	startActivity(intent);
+       	 	finish();
+        }
 		list.setAdapter(loginFactory);
 		list.setOnItemClickListener(this);
 		semester.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

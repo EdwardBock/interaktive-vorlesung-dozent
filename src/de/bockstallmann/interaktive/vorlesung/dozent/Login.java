@@ -37,7 +37,7 @@ public class Login extends Activity {
              intent.putExtra(Constants.LOGIN_UNAME, uname.getText().toString());
              intent.putExtra(Constants.LOGIN_PW, pw.getText().toString());
         	 startActivity(intent);
-        	 //finish();
+        	 finish();
         }
       };
       
