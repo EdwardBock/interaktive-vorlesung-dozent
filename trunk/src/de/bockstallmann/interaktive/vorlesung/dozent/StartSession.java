@@ -2,12 +2,12 @@ package de.bockstallmann.interaktive.vorlesung.dozent;
 
 import java.util.ArrayList;
 
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.CollectionsJSONHandler;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.JSONLoader;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.SessionsJSONHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Course;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Session;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.CollectionsJSONHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.JSONLoader;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.SessionsJSONHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.StartSessionFactory;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R.layout;
@@ -40,7 +40,7 @@ public class StartSession extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         
         pd = new ProgressDialog(this);
-        pd.setMessage("Loading event!");
+        pd.setMessage(getText(R.string.pd_session));
         pd.setCancelable(true);
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER); 
         pd.show();

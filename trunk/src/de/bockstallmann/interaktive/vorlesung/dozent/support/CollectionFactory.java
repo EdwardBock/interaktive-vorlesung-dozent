@@ -21,6 +21,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.JSONLoader;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.QuestionJSONHandler;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.StartStopJSONHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Collection;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Question;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
@@ -33,15 +36,17 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 	private int collectionID = 0;
 	private int sessionID;
 	private LinearLayout ll;
+	private ProgressDialog pd;
 	
 	
-	public CollectionFactory(Context theContext, int textViewResourceId,ArrayList<Collection> Collection, int Session_id) {
+	public CollectionFactory(Context theContext, int textViewResourceId,ArrayList<Collection> Collection, int Session_id, ProgressDialog PD) {
 		super(theContext, textViewResourceId, Collection);
 		this.collections = Collection;
 		this.context = theContext;
 		inflater = (LayoutInflater)theContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);	
 		questions = new ArrayList<Question>();
 		sessionID = Session_id;
+		pd = PD;
 		JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(4, context)));
         json.setCrashCollection(sessionID);
 	}
@@ -192,6 +197,7 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 				continue;
 			}
 		}
+		pd.dismiss();
 		this.notifyDataSetChanged();
 	}
 	public void refreshQuestions(JSONArray serverDaten){

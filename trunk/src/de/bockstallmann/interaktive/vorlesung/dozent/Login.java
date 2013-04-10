@@ -1,7 +1,7 @@
 package de.bockstallmann.interaktive.vorlesung.dozent;
 
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.SQLDataHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.SQLDataHandler;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 import android.os.Bundle;
 import android.app.Activity;

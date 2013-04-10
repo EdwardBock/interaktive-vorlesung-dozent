@@ -1,7 +1,8 @@
-package de.bockstallmann.interaktive.vorlesung.dozent.support;
+package de.bockstallmann.interaktive.vorlesung.dozent.handler;
 
 
 
+import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;

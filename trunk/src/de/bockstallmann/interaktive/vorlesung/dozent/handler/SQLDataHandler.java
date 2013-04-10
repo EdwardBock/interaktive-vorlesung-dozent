@@ -1,8 +1,9 @@
-package de.bockstallmann.interaktive.vorlesung.dozent.support;
+package de.bockstallmann.interaktive.vorlesung.dozent.handler;
 
 import java.util.ArrayList;
 
 import de.bockstallmann.interaktive.vorlesung.dozent.model.User;
+import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
 import de.bockstallmann.interaktive.vorlesung.model.Course;
 import android.content.ContentValues;
 import android.content.Context;

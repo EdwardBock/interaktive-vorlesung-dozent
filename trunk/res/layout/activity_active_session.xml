@@ -36,7 +36,7 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="16dp"
-        android:src="@drawable/ic_close_fix_activity"
+        android:src="@drawable/ic_menu_close_white"
         android:background="@null"
         android:onClick="exit" />
         

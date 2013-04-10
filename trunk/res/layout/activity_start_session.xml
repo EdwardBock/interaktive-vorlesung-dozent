@@ -19,6 +19,7 @@
 		    android:layout_centerVertical="true"
 		    android:contentDescription="@string/actionbar_icon_cd"
 		    android:layout_alignParentLeft="true"
+		    android:onClick="actionbarClick"
 		/>
         <ImageButton
             android:id="@+id/actionbar_back"
