@@ -135,7 +135,7 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 		AlertDialog.Builder builder;
 		//AlertDialog alertDialog;
 		builder = new AlertDialog.Builder(context);
-		builder.setMessage("Wollen Sie wirklich die Fragerunde schlieﬂen?")
+		builder.setMessage(R.string.Fragerundentext)
         .setPositiveButton("Schlieﬂen", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
             	JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(0,context)));
