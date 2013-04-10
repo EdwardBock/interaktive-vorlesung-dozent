@@ -3,19 +3,20 @@ package de.bockstallmann.interaktive.vorlesung.dozent;
 
 import java.util.ArrayList;
 
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.CollectionsJSONHandler;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.JSONLoader;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.StartStopJSONHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Collection;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Session;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.CollectionFactory;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.CollectionsJSONHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.JSONLoader;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.StartStopJSONHandler;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R.layout;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R.menu;
 import android.os.Bundle;
 import android.os.Messenger;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
@@ -27,16 +28,25 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class ActiveSession extends Activity implements OnItemClickListener{
 	
-	ArrayList<Collection> collection;
-	CollectionFactory cf;
-	ListView list;
-	JSONLoader json;
-	int id;
+	private ArrayList<Collection> collection;
+	private CollectionFactory cf;
+	private ListView list;
+	private JSONLoader json;
+	private int id;
+	private ProgressDialog pd;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_active_session);
+        
+        pd = new ProgressDialog(this);
+        
+        pd.setMessage(getText(R.string.pd_collection));
+        pd.setCancelable(true);
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER); 
+        pd.show();
+        
         id = getIntent().getExtras().getInt(Constants.SESSION_ID);
         String course_title = getIntent().getExtras().getString(Constants.COURSE_TITLE);
         String session_title = getIntent().getExtras().getString(Constants.SESSION_TITLE);
@@ -47,7 +57,7 @@ public class ActiveSession extends Activity implements OnItemClickListener{
         tx_session.setText(session_title);
         list = (ListView) findViewById(R.id.lv_active);
         collection = new ArrayList<Collection>();
-        cf = new CollectionFactory(this, R.layout.collection_row_close, collection, id);
+        cf = new CollectionFactory(this, R.layout.collection_row_close, collection, id, pd);
         json = new JSONLoader(new Messenger(new CollectionsJSONHandler(cf)));
         json.getCollectionsBySessionID(id);
         JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(3, this)));

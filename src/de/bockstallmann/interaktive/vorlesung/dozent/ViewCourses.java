@@ -2,13 +2,13 @@ package de.bockstallmann.interaktive.vorlesung.dozent;
 
 import java.util.ArrayList;
 
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.JSONLoader;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.LoginJSONHandler;
+import de.bockstallmann.interaktive.vorlesung.dozent.handler.SQLDataHandler;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.Course;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.User;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.JSONLoader;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.LoginFactory;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.LoginJSONHandler;
-import de.bockstallmann.interaktive.vorlesung.dozent.support.SQLDataHandler;
 import de.bockstallmann.inveraktive.vorlesung.dozent.R;
 
 

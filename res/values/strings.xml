@@ -30,4 +30,6 @@
     <string name="btn_refresh">Aktualisieren</string>
 	<string name="btn_close_collection">Runde schließen</string>
 	<string name="Fragerundentext">Fragerunde wirklich schließen? Sie kann dann nicht wieder geöffnet werden!</string>
+	<string name="pd_collection">Lade Fragesammlungen!</string>
+	<string name="pd_session">Lade Termine!</string>
 </resources>

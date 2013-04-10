@@ -1,10 +1,11 @@
-package de.bockstallmann.interaktive.vorlesung.dozent.support;
+package de.bockstallmann.interaktive.vorlesung.dozent.handler;
 
 import org.json.JSONArray;
 
 import de.bockstallmann.interaktive.vorlesung.dozent.Login;
 import de.bockstallmann.interaktive.vorlesung.dozent.model.User;
 import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
+import de.bockstallmann.interaktive.vorlesung.dozent.support.LoginFactory;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;

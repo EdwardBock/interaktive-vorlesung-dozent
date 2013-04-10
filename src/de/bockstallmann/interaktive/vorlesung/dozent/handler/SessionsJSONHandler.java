@@ -1,6 +1,9 @@
-package de.bockstallmann.interaktive.vorlesung.dozent.support;
+package de.bockstallmann.interaktive.vorlesung.dozent.handler;
 
 import org.json.JSONArray;
+
+import de.bockstallmann.interaktive.vorlesung.dozent.support.Constants;
+import de.bockstallmann.interaktive.vorlesung.dozent.support.StartSessionFactory;
 
 
 import android.os.Handler;
