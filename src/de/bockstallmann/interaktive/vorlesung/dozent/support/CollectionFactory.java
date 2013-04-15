@@ -47,8 +47,7 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 		questions = new ArrayList<Question>();
 		sessionID = Session_id;
 		pd = PD;
-		JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(4, context)));
-        json.setCrashCollection(sessionID);
+
 	}
 	
 	
@@ -57,6 +56,9 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 		View view = convertView;
 		Collection collection = collections.get(position);
 		final int id = collection.getId();
+		if(collection.getState() == 1){
+			collectionID = id;
+		}
 		//Geöffnete Fragerunde
 		if(collection.getId() == collectionID){		
 			refreshCollectionCount(id);	
