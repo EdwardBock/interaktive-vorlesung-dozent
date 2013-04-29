@@ -71,6 +71,29 @@
         <item name="android:gravity">right</item>
     </style>
     
+     <style name="CounterWrapper">
+        <item name="android:paddingRight">8dp</item>
+    </style>
+    <style name="QuestionCounter" parent="@android:style/TextAppearance.Small.Inverse"></style>
+    <style name="QuestionOverall" parent="@android:style/TextAppearance.Large.Inverse"></style>
+    <style name="Question" parent="@android:style/Widget.TextView">
+        <item name="android:background">@drawable/bg_question</item>
+    </style>
+    <style name="QuestionButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/btn_answer_unselected</item>
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+    
+    <style name="CorrectAnswer" parent="@android:style/Widget.TextView">
+        <item name="android:background">@drawable/bg_correct_answer</item>
+    </style>
+    <style name="ArchiveAnswers" parent="@android:style/Widget.TextView">
+        <item name="android:background">@drawable/bg_archive_answer_wrong</item>
+        <item name="android:layout_marginTop">14dp</item>
+        <item name="android:layout_marginLeft">14dp</item>
+    </style>
+    
     <style name="Dialog" parent="@android:style/Theme.Dialog" >
         <item name="android:background">#999</item>
     </style>

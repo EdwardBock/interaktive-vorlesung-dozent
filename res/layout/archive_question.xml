@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+>
+	
+     <TextView 
+     android:layout_alignParentTop="true"
+     android:layout_alignParentLeft="true"
+     android:id="@+id/tx_question"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content" 
+     android:text="@string/question"
+     style="@style/Question"
+     />
+     <TextView
+     android:layout_below="@id/tx_question"
+     android:id="@+id/tx_correct_answer"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content" 
+     android:singleLine="false"
+     android:text="@string/question_answer"
+     style="@style/CorrectAnswer"
+     />
+     <TextView
+     android:layout_below="@id/tx_correct_answer"
+     android:id="@+id/tx_a1"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" 
+     android:singleLine="true"
+     android:text="A"
+     style="@style/ArchiveAnswers"
+     />
+     <LinearLayout
+         android:id="@+id/bar_1_wrapper"
+     android:layout_alignTop="@id/tx_a1"
+     android:layout_toRightOf="@id/tx_a1"
+     android:layout_alignParentRight="true"
+    android:layout_width="wrap_content" 
+    android:layout_height="18dp"
+    android:weightSum="1.0" >
+    	<TextView 
+    	    android:id="@+id/tx_1"
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="wrap_content"
+    	    /> 
+    </LinearLayout>
+     
+     <TextView
+     android:layout_below="@id/tx_a1"
+     android:id="@+id/tx_a2"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" 
+     android:singleLine="true"
+     android:text="B"
+     style="@style/ArchiveAnswers"
+     />
+     <LinearLayout
+     android:layout_alignTop="@id/tx_a2"
+     android:layout_toRightOf="@id/tx_a2"
+    android:layout_width="wrap_content" 
+    android:layout_height="15dp"
+    android:weightSum="1.0" >
+		<TextView 
+    	    android:id="@+id/tx_2"
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="wrap_content"
+    	    />
+
+    </LinearLayout>
+     
+     <TextView
+     android:layout_below="@id/tx_a2"
+     android:id="@+id/tx_a3"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" 
+     android:singleLine="true"
+     android:text="C"
+     style="@style/ArchiveAnswers"
+     />
+     <LinearLayout
+     android:layout_alignTop="@id/tx_a3"
+     android:layout_toRightOf="@id/tx_a3"
+    android:layout_width="wrap_content" 
+    android:layout_height="15dp"
+    android:weightSum="1.0" >
+		<TextView 
+    	    android:id="@+id/tx_3"
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="wrap_content"
+    	    />
+
+    </LinearLayout>
+     
+     <TextView
+     android:layout_below="@id/tx_a3"
+     android:id="@+id/tx_a4"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" 
+     android:singleLine="true"
+     android:text="D"
+     style="@style/ArchiveAnswers"
+     />
+     <LinearLayout
+     android:layout_alignTop="@id/tx_a4"
+     android:layout_toRightOf="@id/tx_a4"
+    android:layout_width="wrap_content" 
+    android:layout_height="15dp"
+    android:weightSum="1.0" >
+		<TextView 
+    	    android:id="@+id/tx_4"
+    	    android:layout_height="wrap_content"
+    	    android:layout_width="wrap_content"
+    	    />
+
+    </LinearLayout>
+</RelativeLayout>

@@ -38,6 +38,14 @@ public interface Constants {
 	public static final String SESSION_TITLE = "session_title";
 	
 	/**
+	 * Constants für Collection
+	 */
+	public static final String COLLECTION_ID = "collection_id";
+
+	
+	
+	
+	/**
 	 * SQL-Lite Konstanten
 	 */
 	public static final String DB_NAME = "InterVorlesung";
