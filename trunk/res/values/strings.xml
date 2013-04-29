@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Global -->
@@ -12,8 +13,8 @@
     <string name="before">ausstehend</string>
     <!-- ENDE Global -->
 
-	<string name="btn_login">Anmelden</string>
-	<string name="spin_semester">Wählen Sie ein Semester:</string>
+    <string name="btn_login">Anmelden</string>
+    <string name="spin_semester">Wählen Sie ein Semester:</string>
     <!-- Überschriften -->
     <string name="title_activity_start_session">Zu startende Sitzung auswählen!</string>
     <string name="user">Benutzername</string>
@@ -26,10 +27,21 @@
     <string name="title_activity_viewcourses">Meine Vorlesungen</string>
     <!-- ENDE ListCourses -->
 
+
     <!-- Active Session -->
     <string name="btn_refresh">Aktualisieren</string>
-	<string name="btn_close_collection">Runde schließen</string>
-	<string name="Fragerundentext">Fragerunde wirklich schließen? Sie kann dann nicht wieder geöffnet werden!</string>
-	<string name="pd_collection">Lade Fragesammlungen!</string>
-	<string name="pd_session">Lade Termine!</string>
+    <string name="btn_close_collection">Runde schließen</string>
+    <string name="Fragerundentext">Fragerunde wirklich schließen? Sie kann dann nicht wieder geöffnet werden!</string>
+    <string name="pd_collection">Lade Fragesammlungen!</string>
+    <string name="pd_session">Lade Termine!</string>
+    <string name="title_activity_question_archive">QuestionArchive</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <!-- Questions Archive -->
+    <string name="archive_btn_next">Weiter</string>
+    <string name="archive_btn_prev">Zurück</string>
+    <string name="question_answer">Antwort</string>
+    <string name="question">Frage?</string>
+
 </resources>

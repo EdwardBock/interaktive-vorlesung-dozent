@@ -93,6 +93,10 @@ public class ActiveSession extends Activity implements OnItemClickListener{
 			cf.layoutVisibleChange(col.getId());
 			JSONLoader json = new JSONLoader(new Messenger(new StartStopJSONHandler(1,this)));
 	        json.setCollectionActive(col.getId(), 1);
+    	}else if(col.getState() == 2){
+    		Intent intent = new Intent(this, QuestionArchive.class);
+    		intent.putExtra(Constants.COLLECTION_ID, col.getId());
+    		startActivity(intent);
     	}
 	}
     
