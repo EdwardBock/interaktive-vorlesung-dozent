@@ -237,4 +237,8 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 		this.collectionID = collectionid;
 		this.notifyDataSetChanged();
 	}
+	
+	public void pdDismiss(){
+		pd.dismiss();
+	}
 }

@@ -41,7 +41,7 @@ public interface Constants {
 	 * Constants für Collection
 	 */
 	public static final String COLLECTION_ID = "collection_id";
-
+	public static final String COLLECTION_TITLE = "collection_title";
 	
 	
 	

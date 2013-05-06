@@ -34,6 +34,7 @@ public class ActiveSession extends Activity implements OnItemClickListener{
 	private JSONLoader json;
 	private int id;
 	private ProgressDialog pd;
+	private String session_title;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class ActiveSession extends Activity implements OnItemClickListener{
         
         id = getIntent().getExtras().getInt(Constants.SESSION_ID);
         String course_title = getIntent().getExtras().getString(Constants.COURSE_TITLE);
-        String session_title = getIntent().getExtras().getString(Constants.SESSION_TITLE);
+        session_title = getIntent().getExtras().getString(Constants.SESSION_TITLE);
         
         TextView tx_course = (TextView) findViewById(R.id.tx_active_session_titel);
         TextView tx_session = (TextView) findViewById(R.id.tx_active_session);
@@ -96,6 +97,8 @@ public class ActiveSession extends Activity implements OnItemClickListener{
     	}else if(col.getState() == 2){
     		Intent intent = new Intent(this, QuestionArchive.class);
     		intent.putExtra(Constants.COLLECTION_ID, col.getId());
+    		intent.putExtra(Constants.SESSION_TITLE, session_title);
+    		intent.putExtra(Constants.COLLECTION_TITLE, col.getTitle());
     		startActivity(intent);
     	}
 	}
