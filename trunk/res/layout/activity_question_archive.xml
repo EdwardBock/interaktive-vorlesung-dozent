@@ -1,75 +1,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#dedede" >
-	<RelativeLayout
-        android:id="@+id/actionbar"
-        style="@style/Titlebar"
-        android:layout_alignParentTop="true"
-        android:gravity="top" >
-		<ImageButton 
-		    android:id="@+id/actionbar_logo"
-		    android:src="@drawable/ic_menu_iv"
-		    style="@style/Titlebar.Logo"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_centerVertical="true"
-		    android:contentDescription="@string/actionbar_icon_cd"
-		    android:layout_alignParentLeft="true"
-		    android:onClick="actionbarClick"
-		/>
-        <ImageButton
-            android:id="@+id/actionbar_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:background="@null"
-            android:contentDescription="@string/actionbar_back_cd"
-            android:src="@drawable/actionbar_up" 
-            android:onClick="actionbarClick"
-            />
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#222222"
+    >
+
+   <RelativeLayout
+       android:id="@+id/titel_collection"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true" 
+        android:background="@drawable/fix_titel">
         
-        <RelativeLayout 
-            android:id="@+id/counter_wrapper"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/counter_devider"
-            android:layout_marginRight="10dp"
-            >
-            <TextView 
-                android:id="@+id/question_counter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                style="@style/QuestionCounter"
-              	/>
-            <TextView 
-                android:id="@+id/question_overall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                style="@style/QuestionOverall"
-                />
-        </RelativeLayout>
-        
-       	<TextView 
-       	    android:id="@+id/tx_actionbar"
-       	    android:layout_width="wrap_content"
-       	    android:layout_height="wrap_content"
-       	    android:layout_toRightOf="@id/actionbar_logo"
-       	    android:layout_toLeftOf="@id/counter_wrapper"
-       	    android:layout_alignBottom="@id/actionbar_logo"
-       	    android:singleLine="true"
-       	    style="@style/Titlebar.Title"
-       	    />
+     <TextView
+        android:id="@+id/tx_archive_question_titel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        style="@style/SessionTitle" />
+
+    <TextView
+        android:id="@+id/tx_archive_question"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tx_archive_question_titel"
+        android:layout_below="@+id/tx_archive_question_titel"
+        style="@style/SessionInfo" />
+
+    <ImageButton
+        android:id="@+id/btn_back_archive_question"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/actionbar_back"
+        android:background="@null"
+       	android:onClick="actionbarClick" />
         
     </RelativeLayout>
+    
+	
+        
     
 	<RelativeLayout 
 	    android:id="@+id/navigation_wrapper"
@@ -77,6 +51,7 @@
 	    android:layout_width="match_parent"
 	    android:layout_alignParentBottom="true"
 	    android:visibility="gone"
+	    android:background="#CCC"
 	    >
 	    <Button 
 	        android:id="@+id/btn_prev"
@@ -100,7 +75,7 @@
         android:id="@+id/v_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/actionbar"
+        android:layout_below="@id/titel_collection"
         android:layout_above="@id/navigation_wrapper"
         android:background="#dedede"
         >

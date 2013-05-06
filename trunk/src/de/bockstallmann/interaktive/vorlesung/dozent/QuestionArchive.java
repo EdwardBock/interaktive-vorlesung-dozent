@@ -34,8 +34,9 @@ public class QuestionArchive extends Activity {
 	private View question_view;
 	private int activeQuestion = 0;
 	private LayoutInflater li;
-	private TextView question_counter;
-	private TextView question_overall;
+	private TextView tx_titel;
+	private TextView tx_info;
+	private String c_title;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +44,16 @@ public class QuestionArchive extends Activity {
 		setContentView(R.layout.activity_question_archive);
 		questions = new ArrayList<QuestionResult>();
 		int id = getIntent().getExtras().getInt(Constants.COLLECTION_ID);
+		c_title = getIntent().getExtras().getString(Constants.COLLECTION_TITLE);
+		String s_title = getIntent().getExtras().getString(Constants.SESSION_TITLE);
 		tx_empty_info = (TextView) findViewById(R.id.tx_empty_info);
 		sv_content = (ScrollView) findViewById(R.id.sv_content);
 		nav_wrapper = (RelativeLayout) findViewById(R.id.navigation_wrapper);
-		question_counter = (TextView) findViewById(R.id.question_counter);
-		question_overall = (TextView) findViewById(R.id.question_overall);
+		tx_titel = (TextView) findViewById(R.id.tx_archive_question_titel);
+		tx_info = (TextView) findViewById(R.id.tx_archive_question);
+		tx_titel.setText(s_title);
+		tx_info.setText(c_title);
 		
-		question_counter.setText("0");
-		question_overall.setText("0");
 		
 		JSONLoader json = new JSONLoader(new Messenger(new QuestionArchiveJSONHandler(this)));
 		json.getQuestionResult(id);
@@ -81,14 +84,13 @@ public class QuestionArchive extends Activity {
 			}
 		}
 		
-		question_overall.setText(""+questions.size());
 		displayQuestion();
 
 	}
 	
 	private void displayQuestion() {
+		tx_info.setText(c_title+": "+(activeQuestion+1)+"/"+questions.size()+" Frage");
 		if(questions.size()>0){
-			question_counter.setText(""+(activeQuestion+1));
 			sv_content.removeAllViews();
 			if (li == null) {
 				li = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -171,8 +173,7 @@ public class QuestionArchive extends Activity {
 	 */
 	public void actionbarClick(final View view) {
 		switch (view.getId()) {
-		case R.id.actionbar_back:
-		case R.id.actionbar_logo:
+		case R.id.btn_back_archive_question:
 			finish();
 			break;
 		}

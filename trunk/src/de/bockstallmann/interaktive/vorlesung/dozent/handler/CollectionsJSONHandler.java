@@ -34,6 +34,8 @@ public class CollectionsJSONHandler extends Handler {
 		}else{
 			if(ssf != null){
 				ssf.pdDismiss();
+			}else if(cf != null){
+				cf.pdDismiss();
 			}
 		}
 	};
