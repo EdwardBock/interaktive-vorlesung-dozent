@@ -118,7 +118,11 @@ public class CollectionFactory extends ArrayAdapter<Collection> {
 					answers += questions.get(i).questionIntCount();
 				}					
 			}
-			tx_count.setText(count+" Fragen/ Ø"+answers/count+" Antworten");
+			int avarage = 0;
+			if(count > 0){
+				avarage = answers/count;
+			}
+			tx_count.setText(count+" Fragen/ Ø"+avarage+" Antworten");
 			if(collection.getState() == 2){
 				((TextView) view.findViewById(R.id.tx_collection_close_state)).setText(R.string.close);
 			}else{
